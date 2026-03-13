@@ -59,11 +59,20 @@ public class FirstPersonController : MonoBehaviour
     {
         if (characterController.isGrounded) //Momentum is kept while jumping, meaning the player cant change direction while in air
         {
-        Vector3 worldDirection = CalculateWorldDirection();
-        currentMovement.x = worldDirection.x * currentSpeed;
-        currentMovement.z = worldDirection.z * currentSpeed;
+            Vector3 worldDirection = CalculateWorldDirection();
+            currentMovement.x = worldDirection.x * currentSpeed;
+            currentMovement.z = worldDirection.z * currentSpeed;
 
-        HandleJumping();
+            Vector3 adjustedVelocity = AdjustVelocityToSlope(new Vector3(currentMovement.x, 0f, currentMovement.z)); //Fixing slope jumping
+            currentMovement.x = adjustedVelocity.x;
+            currentMovement.z = adjustedVelocity.z;
+
+                HandleJumping();
+
+            if (!playerInputHandler.JumpTriggered && adjustedVelocity.y < 0) //more slope jumping fixes
+                {
+                currentMovement.y = adjustedVelocity.y -2.0f;
+            }
         }
 
         else
@@ -91,5 +100,28 @@ public class FirstPersonController : MonoBehaviour
 
         ApplyHorizontalRotation(mouseXRotation);
         ApplyVerticalRotation(mouseYRotation);
+    }
+
+    private Vector3 AdjustVelocityToSlope(Vector3 velocity) //slope jumping fixing funciton
+    {
+        Vector3 rayOrigin = transform.position + characterController.center;
+        float rayLength = (characterController.height / 2f) + 0.5f;
+
+        Debug.DrawRay(rayOrigin, Vector3.down * rayLength, Color.red);
+
+        var ray = new Ray(rayOrigin, Vector3.down);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, rayLength))
+        {
+            var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            var adjustedVelocity = slopeRotation * velocity;
+
+            if (adjustedVelocity.y < 0)
+            {
+                return adjustedVelocity;
+            }
+        }
+
+        return velocity;
     }
 }
