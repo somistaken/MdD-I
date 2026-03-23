@@ -9,7 +9,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float sprintMultiplier = 2.0f;
 
     [Header("Jump parameters")]
-    [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private float jumpForce = 1.0f;
     [SerializeField] private float gravityMultiplier = 1.0f;
 
     [Header("Look Parameters")]
@@ -20,6 +20,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private PlayerInputHandler playerInputHandler;
+    [SerializeField] private Animator animator;
 
     private Vector3 currentMovement;
     private float verticalRotation;
@@ -37,6 +38,7 @@ public class FirstPersonController : MonoBehaviour
     {
         HandleMovement();
         HandleRotation();
+        UpdateAnimations();
     }
 
     private Vector3 CalculateWorldDirection()
@@ -52,6 +54,7 @@ public class FirstPersonController : MonoBehaviour
         if (playerInputHandler.JumpTriggered)
         {
             currentMovement.y = jumpForce;
+            animator.SetTrigger("Jump");
         }
     }
 
@@ -123,5 +126,16 @@ public class FirstPersonController : MonoBehaviour
         }
 
         return velocity;
+    }
+
+    private void UpdateAnimations()
+    {   
+        Vector3 horizontalVelocity = new Vector3(characterController.velocity.x, 0f, characterController.velocity.z);
+        float currentHorizontalSpeed = horizontalVelocity.magnitude;
+
+        animator.SetFloat("Speed", currentHorizontalSpeed);
+        animator.SetBool("IsGrounded", characterController.isGrounded);
+        animator.SetFloat("VerticalVelocity", characterController.velocity.y);
+
     }
 }
