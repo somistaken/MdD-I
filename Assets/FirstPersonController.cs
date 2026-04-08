@@ -22,6 +22,10 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private PlayerInputHandler playerInputHandler;
     [SerializeField] private Animator animator;
 
+    [Header("Momentum Parameters")]
+    [SerializeField] private float acceleration = 10f;
+    [SerializeField] private float deceleration = 15f;
+
     private Vector3 currentMovement;
     private float verticalRotation;
     private float currentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplier : 1);
@@ -60,29 +64,38 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (characterController.isGrounded) //Momentum is kept while jumping, meaning the player cant change direction while in air
+        if (characterController.isGrounded)
         {
             Vector3 worldDirection = CalculateWorldDirection();
-            currentMovement.x = worldDirection.x * currentSpeed;
-            currentMovement.z = worldDirection.z * currentSpeed;
 
-            Vector3 adjustedVelocity = AdjustVelocityToSlope(new Vector3(currentMovement.x, 0f, currentMovement.z)); //Fixing slope jumping
+            Vector3 targetHorizontalVelocity = worldDirection * currentSpeed;
+            Vector3 currentHorizontal = new Vector3(currentMovement.x, 0f, currentMovement.z);
+
+            //Frenando o acelerando?
+            float momentumRate = worldDirection.magnitude > 0.1f ? acceleration : deceleration;
+
+            // Interpolacion aka momentum propiamente dicho
+            Vector3 newHorizontal = Vector3.MoveTowards(currentHorizontal, targetHorizontalVelocity, momentumRate * Time.deltaTime);
+
+            // pendientes/rampas
+            Vector3 adjustedVelocity = AdjustVelocityToSlope(newHorizontal);
+
             currentMovement.x = adjustedVelocity.x;
             currentMovement.z = adjustedVelocity.z;
 
-                HandleJumping();
+            HandleJumping();
 
-            if (!playerInputHandler.JumpTriggered && adjustedVelocity.y < 0) //more slope jumping fixes
-                {
-                currentMovement.y = adjustedVelocity.y -2.0f;
+            if (!playerInputHandler.JumpTriggered && adjustedVelocity.y < 0) // Fixeo rampas
+            {
+                currentMovement.y = adjustedVelocity.y - 2.0f;
             }
         }
-
-        else
+        else // Momentum en el aire aka no se puede cambiar de dirección una vez en el aire
         {
             currentMovement.y += Physics.gravity.y * gravityMultiplier * Time.deltaTime;
         }
-            characterController.Move(currentMovement * Time.deltaTime);
+
+        characterController.Move(currentMovement * Time.deltaTime);
     }
 
     private void ApplyHorizontalRotation (float rotationAmount)
@@ -105,7 +118,7 @@ public class FirstPersonController : MonoBehaviour
         ApplyVerticalRotation(mouseYRotation);
     }
 
-    private Vector3 AdjustVelocityToSlope(Vector3 velocity) //slope jumping fixing funciton
+    private Vector3 AdjustVelocityToSlope(Vector3 velocity) // fix para que no salte cuando baja en una pendiente
     {
         Vector3 rayOrigin = transform.position + characterController.center;
         float rayLength = (characterController.height / 2f) + 0.5f;
