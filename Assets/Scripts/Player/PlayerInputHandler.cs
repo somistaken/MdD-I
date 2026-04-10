@@ -15,12 +15,14 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string jump = "Jump";
     [SerializeField] private string sprint = "Sprint";
     [SerializeField] private string interaction = "Interaction";
+    [SerializeField] private string lamp = "Lamp";
 
     private InputAction movementAction;
     private InputAction rotationAction;
     private InputAction jumpAction;
     private InputAction sprintAction;
     private InputAction interactAction;
+    private InputAction lampAction;
 
     public Vector2 MovementInput { get; private set; }
     public Vector2 RotationInput { get; private set; }
@@ -37,6 +39,7 @@ public class PlayerInputHandler : MonoBehaviour
         jumpAction = mapReference.FindAction(jump);
         sprintAction = mapReference.FindAction(sprint);
         interactAction = mapReference.FindAction(interaction);
+        lampAction = mapReference.FindAction(lamp);
         SubscribeActionValuesToInputEvents();
     }
 
@@ -56,6 +59,11 @@ public class PlayerInputHandler : MonoBehaviour
 
         interactAction.performed += inputInfo => InteractTriggered = true;
         interactAction.canceled += inputInfo => InteractTriggered = false;
+    }
+
+    public bool LampToggle()
+    {
+        return lampAction.triggered;
     }
 
     private void OnEnable()
