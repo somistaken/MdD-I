@@ -37,7 +37,7 @@ public class FirstPersonController : MonoBehaviour
         Cursor.visible = false;
     }
 
-    // Update is called once per frame
+    // Update is once per frame
     void Update()
     {
         HandleMovement();
@@ -54,7 +54,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleJumping()
     {
-        currentMovement.y =     -0.5f;
+        currentMovement.y = -0.5f;
         if (playerInputHandler.JumpTriggered)
         {
             currentMovement.y = jumpForce;
@@ -77,28 +77,31 @@ public class FirstPersonController : MonoBehaviour
             // Interpolacion aka momentum propiamente dicho
             Vector3 newHorizontal = Vector3.MoveTowards(currentHorizontal, targetHorizontalVelocity, momentumRate * Time.deltaTime);
 
+            currentMovement.x = newHorizontal.x;
+            currentMovement.z = newHorizontal.z;
+
             // pendientes/rampas
             Vector3 adjustedVelocity = AdjustVelocityToSlope(newHorizontal);
 
-            currentMovement.x = adjustedVelocity.x;
-            currentMovement.z = adjustedVelocity.z;
-
             HandleJumping();
+
+            Vector3 moveVelocity = new Vector3(adjustedVelocity.x, currentMovement.y, adjustedVelocity.z);
 
             if (!playerInputHandler.JumpTriggered && adjustedVelocity.y < 0) // Fixeo rampas
             {
-                currentMovement.y = adjustedVelocity.y - 2.0f;
+                moveVelocity.y = adjustedVelocity.y - 2.0f;
             }
+
+            characterController.Move(moveVelocity * Time.deltaTime);
         }
         else // Momentum en el aire aka no se puede cambiar de dirección una vez en el aire
         {
             currentMovement.y += Physics.gravity.y * gravityMultiplier * Time.deltaTime;
+            characterController.Move(currentMovement * Time.deltaTime);
         }
-
-        characterController.Move(currentMovement * Time.deltaTime);
     }
 
-    private void ApplyHorizontalRotation (float rotationAmount)
+    private void ApplyHorizontalRotation(float rotationAmount)
     {
         transform.Rotate(0, rotationAmount, 0);
     }
@@ -142,7 +145,7 @@ public class FirstPersonController : MonoBehaviour
     }
 
     private void UpdateAnimations()
-    {   
+    {
         Vector3 horizontalVelocity = new Vector3(characterController.velocity.x, 0f, characterController.velocity.z);
         float currentHorizontalSpeed = horizontalVelocity.magnitude;
 
