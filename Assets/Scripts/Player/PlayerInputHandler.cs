@@ -57,13 +57,18 @@ public class PlayerInputHandler : MonoBehaviour
         sprintAction.performed += inputInfo => SprintTriggered = true;
         sprintAction.canceled += inputInfo => SprintTriggered = false;
 
-        interactAction.performed += inputInfo => InteractTriggered = true;
-        interactAction.canceled += inputInfo => InteractTriggered = false;
+        //interactAction.performed += inputInfo => InteractTriggered = true;
+        //interactAction.canceled += inputInfo => InteractTriggered = false;
     }
 
     public bool LampToggle()
     {
         return lampAction.triggered;
+    }
+
+    public bool Interaction()
+    {
+        return interactAction.triggered;
     }
 
     private void OnEnable()
