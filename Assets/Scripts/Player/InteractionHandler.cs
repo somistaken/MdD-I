@@ -23,7 +23,7 @@ public class InteractionHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerInputHandler.InteractTriggered)
+        if (playerInputHandler.Interaction())
         {
             Ray r = new Ray(interactionSource.position, interactionSource.forward);
             Debug.DrawRay(interactionSource.position, interactionSource.forward * interactRange, Color.green, 2f);
