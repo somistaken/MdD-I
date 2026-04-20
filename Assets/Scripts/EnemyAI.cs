@@ -3,22 +3,32 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public Transform player;
-    public LayerMask whatIsGround, whatisPlayer;
+    [Header("References")]
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private Transform player;
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsPlayer;
 
     //Patrullaje
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
+    [Header("Patrol Settings")]
+    [SerializeField] private float walkPointRange;
+    private Vector3 walkPoint;
+    private bool walkPointSet;
 
     //Intento de captura
-    public float timeBetweenTries;
-    bool alreadyTriedCapture;
+    [Header("Capture Settings")]
+    [SerializeField] private float timeBetweenTries;
+    private bool alreadyTriedCapture;
 
     //Estados
-    public float sightRange, captureRange;
-    public bool playerInSightRange, playerInCaptureRange;
+    [Header("Detection Ranges")]
+    [SerializeField] private float sightRange;
+    [SerializeField] private float captureRange;
+    [Tooltip("Eye height for raycast")]
+    [SerializeField] private float eyeHeightOffset = 1.5f;
+
+    private bool playerInSightRange;
+    private bool playerInCaptureRange;
 
     private void Awake()
     {
@@ -29,12 +39,36 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         //Chequeo de vision y rango
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatisPlayer);
-        playerInCaptureRange = Physics.CheckSphere(transform.position, captureRange, whatisPlayer);
+        //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        //playerInCaptureRange = Physics.CheckSphere(transform.position, captureRange, whatIsPlayer);
+        playerInSightRange = CheckLineOfSight(sightRange);
+        playerInCaptureRange = CheckLineOfSight(captureRange);
 
         if (!playerInSightRange &&  !playerInCaptureRange) Patrolling();
         if (playerInSightRange && !playerInCaptureRange) ChasePlayer();
         if (playerInSightRange && playerInCaptureRange) CapturePlayer();
+    }
+
+    private bool CheckLineOfSight(float range)
+    {
+        // Dentro de la esfera?
+        if (Physics.CheckSphere(transform.position, range, whatIsPlayer))
+        {
+            //raycast
+            Vector3 origin = transform.position + Vector3.up * eyeHeightOffset;
+            Vector3 target = player.position + Vector3.up * eyeHeightOffset;
+            Vector3 direction = target - origin;
+
+            //actual check
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, range, whatIsGround))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     private void Patrolling()
@@ -47,20 +81,22 @@ public class EnemyAI : MonoBehaviour
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //Se llego al punto deseado
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distanceToWalkPoint.sqrMagnitude < 1f)
             walkPointSet = false;
     }
 
     private void SearchWalkPoint()
     {
-        //Calculate random point in range
+        //Calcular punto random para desplazarse
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        {
             walkPointSet = true;
+        }
     }
 
     private void ChasePlayer()
@@ -73,12 +109,14 @@ public class EnemyAI : MonoBehaviour
         //Nos aseguramos que el enemigo no se mueva cuando trata de capturar
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        Vector3 lookPosition = player.position;
+        lookPosition.y = transform.position.y;
+        transform.LookAt(lookPosition);
 
         if (!alreadyTriedCapture)
         {
-            //Agreguese codigo del flavor, llamar animaciones, etc.
             alreadyTriedCapture = true;
+            //Agreguese codigo del flavor, llamar animaciones, etc.
             Invoke(nameof(ResetCapture), timeBetweenTries);
         }
     }
@@ -94,5 +132,8 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, captureRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position + Vector3.up * eyeHeightOffset, transform.forward * sightRange);
     }
 }
