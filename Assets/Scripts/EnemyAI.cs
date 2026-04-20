@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -8,6 +10,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsPlayer;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip stareSound;
+
+    [Header("Movement Speeds")]
+    [SerializeField] private float patrolSpeed;
+    [SerializeField] private float chaseSpeed;
 
     //Patrullaje
     [Header("Patrol Settings")]
@@ -20,15 +28,28 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float timeBetweenTries;
     private bool alreadyTriedCapture;
 
-    //Estados
     [Header("Detection Ranges")]
     [SerializeField] private float sightRange;
     [SerializeField] private float captureRange;
     [Tooltip("Eye height for raycast")]
-    [SerializeField] private float eyeHeightOffset = 1.5f;
+    [SerializeField] private float eyeHeightOffset;
 
+    [Header("Detection Timers")]
+    [SerializeField] private float timeToSpotPlayer;
+    private float currentSpotTimer;
+    private bool hasSpottedPlayer;
+
+    //Sistema de memoria
+    [Header("Investigation Settings")]
+    [SerializeField] private float investigateTime;
+    private Vector3 lastKnownPosition;
+    private bool isInvestigating;
+    private float currentInvestigateTimer;
+
+    //Estados
     private bool playerInSightRange;
     private bool playerInCaptureRange;
+    private bool hasPlayedStareSound;
 
     private void Awake()
     {
@@ -38,15 +59,83 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        //Chequeo de vision y rango
-        //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        //playerInCaptureRange = Physics.CheckSphere(transform.position, captureRange, whatIsPlayer);
         playerInSightRange = CheckLineOfSight(sightRange);
         playerInCaptureRange = CheckLineOfSight(captureRange);
 
-        if (!playerInSightRange &&  !playerInCaptureRange) Patrolling();
-        if (playerInSightRange && !playerInCaptureRange) ChasePlayer();
-        if (playerInSightRange && playerInCaptureRange) CapturePlayer();
+        //Si el player esta en rango de captura cerca no espera
+        if (playerInCaptureRange)
+        {
+            hasSpottedPlayer = true;
+            isInvestigating = false;
+        }
+
+        //Ver al player
+        else if (playerInSightRange)
+        {
+            if (isInvestigating)
+            {
+                hasSpottedPlayer = true;
+                isInvestigating = false;
+                lastKnownPosition = player.position;
+            }
+            else
+            {
+                if (!hasPlayedStareSound)
+                {
+                    audioSource.PlayOneShot(stareSound);
+                    hasPlayedStareSound = true;
+                }
+
+                currentSpotTimer += Time.deltaTime;
+
+                if (currentSpotTimer >= timeToSpotPlayer)
+                {
+                    hasSpottedPlayer = true;
+                    lastKnownPosition = player.position;
+                }
+            }
+        }
+
+        //El player se escondio
+        else
+        {
+            currentSpotTimer = 0f;
+            hasPlayedStareSound = false;
+
+            if (hasSpottedPlayer && !isInvestigating)
+            {
+                isInvestigating = true;
+            }
+        }
+
+        if (hasSpottedPlayer && playerInCaptureRange)
+        {
+            CapturePlayer();
+        }
+        else if (hasSpottedPlayer && !isInvestigating)
+        {
+            ChasePlayer();
+            if (playerInSightRange) lastKnownPosition = player.position;
+        }
+        else if (isInvestigating)
+        {
+            Investigate();
+        }
+        else
+        {
+            if (currentSpotTimer > 0)
+            {
+                agent.ResetPath();
+                agent.velocity = Vector3.zero;
+
+                Vector3 lookPos = new Vector3(player.position.x, transform.position.y, player.position.z);
+                transform.LookAt(lookPos);
+            }
+            else
+            {
+                Patrolling();
+            }
+        }
     }
 
     private bool CheckLineOfSight(float range)
@@ -59,8 +148,10 @@ public class EnemyAI : MonoBehaviour
             Vector3 target = player.position + Vector3.up * eyeHeightOffset;
             Vector3 direction = target - origin;
 
+            float distanceToPlayer = direction.magnitude;
+
             //actual check
-            if (Physics.Raycast(origin, direction, out RaycastHit hit, range, whatIsGround))
+            if (Physics.Raycast(origin, direction.normalized, out RaycastHit hit, distanceToPlayer, whatIsGround))
             {
                 return false;
             }
@@ -73,6 +164,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Patrolling()
     {
+        agent.speed = patrolSpeed;
+
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -88,8 +181,8 @@ public class EnemyAI : MonoBehaviour
     private void SearchWalkPoint()
     {
         //Calcular punto random para desplazarse
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
+        float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+        float randomX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
@@ -101,6 +194,7 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasePlayer()
     {
+        agent.speed = chaseSpeed;
         agent.SetDestination(player.position);
     }
 
@@ -124,6 +218,32 @@ public class EnemyAI : MonoBehaviour
     private void ResetCapture()
     {
         alreadyTriedCapture = false;
+    }
+
+    //Sistema de memoria aka recordar la ultima pos del player
+    private void Investigate()
+    {
+        agent.speed = chaseSpeed;
+        agent.SetDestination(lastKnownPosition);
+
+        
+        Vector3 distanceToPoint = transform.position - lastKnownPosition;
+        distanceToPoint.y = 0;
+
+        
+        if (distanceToPoint.sqrMagnitude < 2f)
+        {
+            agent.ResetPath();
+
+            currentInvestigateTimer += Time.deltaTime;
+
+            if (currentInvestigateTimer >= investigateTime)
+            {
+                hasSpottedPlayer = false;
+                isInvestigating = false;
+                currentInvestigateTimer = 0f;
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()
