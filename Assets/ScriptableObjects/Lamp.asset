@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   sprite: {fileID: 0}
   id: lamp
-  itemName: Lamp
-  description: Provides a light source
+  itemName: Lampara
+  description: Una fuente de luz

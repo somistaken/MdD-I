@@ -12,7 +12,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.Log("More than one dialogue manager in the scene");
+            Debug.Log("More than one inventory in the scene");
         }
         instance = this;
     }
@@ -25,6 +25,11 @@ public class PlayerInventory : MonoBehaviour
         }
 
         inventoryDict.Add(item.id, item);
+    }
+
+    public void RemoveItem(string itemID)
+    {
+        inventoryDict.Remove(itemID);
     }
 
     public static PlayerInventory GetInstance()

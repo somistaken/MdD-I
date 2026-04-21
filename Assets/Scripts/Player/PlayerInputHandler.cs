@@ -28,7 +28,6 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 RotationInput { get; private set; }
     public bool JumpTriggered { get; private set; }
     public bool SprintTriggered { get; private set; }
-    public bool InteractTriggered { get; private set; }
 
     private void Awake()
     {
