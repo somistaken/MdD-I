@@ -11,4 +11,6 @@ public class PickupItem : MonoBehaviour, IInteractable
 
         Destroy(gameObject);
     }
+
+
 }

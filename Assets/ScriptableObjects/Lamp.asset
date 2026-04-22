@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60388a2e022b35644994b16f2db7edaa, type: 3}
   m_Name: Lamp
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 87abe777a15a76d49911c1049abdf8d8, type: 3}
   id: lamp
   itemName: Lampara
   description: Una fuente de luz

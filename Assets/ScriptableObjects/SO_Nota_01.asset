@@ -16,3 +16,4 @@ MonoBehaviour:
   id: nota_01
   itemName: Nota de sala de estar
   description: '"Parece estar manchado con algo rojo..."'
+  isBurnable: 1
