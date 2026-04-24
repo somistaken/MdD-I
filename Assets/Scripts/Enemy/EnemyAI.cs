@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.VirtualTexturing;
 
 public class EnemyAI : MonoBehaviour
@@ -8,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     [Header("References")]
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform player;
+    [SerializeField] private Transform safeZoneSpawnPoint;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private AudioSource audioSource;
@@ -26,6 +28,8 @@ public class EnemyAI : MonoBehaviour
     //Intento de captura
     [Header("Capture Settings")]
     [SerializeField] private float timeBetweenTries;
+    [SerializeField] private int maxCaptures = 3;
+    private int currentCaptures = 0;
     private bool alreadyTriedCapture;
 
     [Header("Detection Ranges")]
@@ -50,6 +54,7 @@ public class EnemyAI : MonoBehaviour
     private bool playerInSightRange;
     private bool playerInCaptureRange;
     private bool hasPlayedStareSound;
+    public bool isPlayerInSafeZone;
 
     private void Awake()
     {
@@ -59,6 +64,20 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (isPlayerInSafeZone)
+        {
+            playerInSightRange = false;
+            playerInCaptureRange = false;
+            hasSpottedPlayer = false;
+            isInvestigating = false;
+            currentSpotTimer = 0f;
+            currentInvestigateTimer = 0f;
+            hasPlayedStareSound = false;
+
+            Patrolling();
+            return;
+        }
+        
         playerInSightRange = CheckLineOfSight(sightRange);
         playerInCaptureRange = CheckLineOfSight(captureRange);
 
@@ -105,6 +124,7 @@ public class EnemyAI : MonoBehaviour
             if (hasSpottedPlayer && !isInvestigating)
             {
                 isInvestigating = true;
+                lastKnownPosition = player.position;
             }
         }
 
@@ -136,6 +156,8 @@ public class EnemyAI : MonoBehaviour
                 Patrolling();
             }
         }
+
+        
     }
 
     private bool CheckLineOfSight(float range)
@@ -210,14 +232,37 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyTriedCapture)
         {
             alreadyTriedCapture = true;
-            //Agreguese codigo del flavor, llamar animaciones, etc.
-            Invoke(nameof(ResetCapture), timeBetweenTries);
+            currentCaptures++;
+            if (currentCaptures >= maxCaptures)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            else
+            {
+                SendPlayerToSafeZone();
+            }
         }
     }
 
     private void ResetCapture()
     {
         alreadyTriedCapture = false;
+    }
+
+    private void SendPlayerToSafeZone()
+    {
+        CharacterController cc = player.GetComponent<CharacterController>();
+        if (cc != null) cc.enabled = false;
+
+        player.position = safeZoneSpawnPoint.position;
+
+        if (cc != null) cc.enabled = true;
+
+        hasSpottedPlayer = false;
+        isInvestigating = false;
+        currentSpotTimer = 0f;
+
+        Invoke(nameof(ResetCapture), timeBetweenTries);
     }
 
     //Sistema de memoria aka recordar la ultima pos del player

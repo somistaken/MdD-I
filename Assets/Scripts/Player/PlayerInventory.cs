@@ -53,7 +53,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void BurnNotes()
     {
-        foreach (KeyValuePair<string, ItemSO> item  in inventoryDict.ToList())
+        foreach (KeyValuePair<string, ItemSO> item in inventoryDict.ToList())
         {
             if (item.Value.isBurnable)
             {
