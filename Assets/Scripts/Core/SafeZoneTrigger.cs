@@ -8,6 +8,7 @@ public class SafeZoneTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.GetInstance().ChangeMusic(AudioManager.SoundType.musicaSafeRoom);
             if (enemyAI != null)
             {
                 enemyAI.isPlayerInSafeZone = true;
@@ -19,6 +20,7 @@ public class SafeZoneTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.GetInstance().ChangeMusic(AudioManager.SoundType.musicaGeneral);
             if (enemyAI != null)
             {
                 enemyAI.isPlayerInSafeZone = false;

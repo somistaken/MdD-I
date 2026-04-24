@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LampToggle : MonoBehaviour
 {
-    [Header("InputHandler")]
+    [Header("Referencias")]
     [SerializeField] private PlayerInputHandler playerInputHandler;
     [SerializeField] private Light lampLight;
 
@@ -24,6 +24,7 @@ public class LampToggle : MonoBehaviour
 
     private void ToggleLamp()
     {
+        AudioManager.GetInstance().PlaySound(AudioManager.SoundType.lampToggle);
         if (lampLight.gameObject.activeSelf)
         {
             lampLight.gameObject.SetActive(false);
