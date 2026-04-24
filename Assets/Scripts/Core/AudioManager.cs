@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AudioManager : MonoBehaviour
 {
     public enum SoundType
     {
         lampToggle,
-        musicaSafeRoom,
-        musicaGeneral
+        musicSafeRoom,
+        musicGeneral
         // agregar mas sonidos que hagan falta
     }
 
@@ -29,9 +30,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Sound[] allSounds;
 
     private Dictionary<SoundType, Sound> soundDict = new Dictionary<SoundType, Sound>();
-
-    // audioSource para la musica
-    private AudioSource musicSource;
+    private Dictionary<SoundType, GameObject> musicDict = new Dictionary<SoundType, GameObject>();
 
     private void Awake()
     {
@@ -46,6 +45,8 @@ public class AudioManager : MonoBehaviour
         {
             soundDict[sound.type] = sound;
         }
+
+        ChangeMusic(SoundType.musicGeneral);
     }
 
     // llamar al singleton
@@ -79,6 +80,7 @@ public class AudioManager : MonoBehaviour
         Destroy(soundObject, s.clip.length);
     }
 
+    // cambia la musica general
     public void ChangeMusic(SoundType type)
     {
         // error si el sonido no existe en el dict
@@ -88,14 +90,22 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        if (musicSource == null)
+        if (!musicDict.TryGetValue(type, out GameObject musicObject))
         {
-            var container = new GameObject("soundtrackObject");
-            musicSource = container.AddComponent<AudioSource>();
-            musicSource.loop = true;
+            var container = new GameObject($"Music_{type}");
+            musicDict[type] = container;
+            var audioSrc = container.AddComponent<AudioSource>();
+            audioSrc.clip = track.clip;
+            audioSrc.volume = track.volume;
+            audioSrc.loop = true;
+            audioSrc.Play();
         }
 
-        musicSource.clip = track.clip;
-        musicSource.Play();
+        foreach (var value in musicDict.Values)
+        {
+            value.GetComponent<AudioSource>().volume = 0f;
+        }
+
+        musicDict[type].GetComponent<AudioSource>().volume = track.volume;
     }
 }
