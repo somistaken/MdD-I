@@ -7,10 +7,13 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if (NoteReaderUI.GetInstance() != null)
+        {
+            NoteReaderUI.GetInstance().OpenNote(itemData);
+        }
+
         PlayerInventory.GetInstance().AddItem(itemData);
 
         Destroy(gameObject);
     }
-
-
 }
