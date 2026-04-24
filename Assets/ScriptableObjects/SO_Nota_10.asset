@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60388a2e022b35644994b16f2db7edaa, type: 3}
+  m_Name: SO_Nota_10
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  sprite: {fileID: 0}
+  id: nota_10
+  itemName: "\"\xBFCaballo endemoniado?\" (Septiembre,1934)"
+  description: "Fue hallada una nota de suicidio de un ex-integrante de la mafia
+    Blade Boys, en la que destacamos la particularidad de una cita \u201Cese maldito
+    caballo me persigue hasta en mis sue\xF1os, no aguanto m\xE1s la carga de haber
+    sido part\xEDcipe de esto, es un demonio, est\xE1 loco, alguien se tiene que
+    encargar realmente de \xE9l porque sigue vivo, lo vi con mis propios ojos; me
+    atormenta todos los dias de mi vida, desahagase de el\u201D. \xBFEstar\xE1 merodeando
+    a\xFAn el esp\xEDritu de Phar Lap los alrededores del establo? \xBFEstar\xE1
+    buscando venganza? \xBFFue un demonio lo que represent\xF3 una alegr\xEDa nacional?"
+  isBurnable: 1

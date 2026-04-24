@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60388a2e022b35644994b16f2db7edaa, type: 3}
+  m_Name: SO_Nota_09
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  sprite: {fileID: 0}
+  id: nota_09
+  itemName: "\"Irresponsables\u201D (Junio, 1933)"
+  description: "Fue encontrada la banda responsable del asesinato de Phar Lap. \r\nLa
+    mafia llamada \u201CBlade Boys\u201D fue la causante del siniestro, ya que se
+    encontraron huellas en la escena del crimen, correspondientes a miembros de esta
+    famosa pandilla. La polic\xEDa trabaja sin descanso para poder encontrarlos y
+    condenarlos. Por favor si mantiene contacto con alguno de ellos, entreguelo a
+    la justicia.\r\n"
+  isBurnable: 1

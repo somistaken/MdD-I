@@ -33,7 +33,7 @@ public class DoorController : MonoBehaviour, IInteractable
                 PlayerInventory.GetInstance().RemoveItem("oil");
             }
             // audio de puerta trabada
-            Debug.Log("Door stuck");
+            Debug.Log("Door is stuck");
             return;
         }
 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60388a2e022b35644994b16f2db7edaa, type: 3}
+  m_Name: SO_Nota_03
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  sprite: {fileID: 0}
+  id: nota_03
+  itemName: '"Fraude Total" (Julio, 1931)'
+  description: "Mientras la Gran Depresi\xF3n asfixia a Australia, \u201CPhar Lap\u201D
+    llama la atenci\xF3n de todas las c\xE1maras, ya que se consagra en el podio
+    en el 90% de sus carreras.\r\nLas autoridades del hip\xF3dromo recibieron infinidad
+    de denuncias an\xF3nimas sobre alteraciones en su comida y su extra\xF1o comportamiento."
+  isBurnable: 1

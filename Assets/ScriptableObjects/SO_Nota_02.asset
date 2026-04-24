@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60388a2e022b35644994b16f2db7edaa, type: 3}
+  m_Name: SO_Nota_02
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  sprite: {fileID: 0}
+  id: nota_02
+  itemName: '"Intento de asesinato en Caulfield" (Noviembre, 1930)'
+  description: "Dos individuos no identificados se escabulleron en el establo donde
+    se encontraba la promesa del conocido Telford, su preciado Phar Lap. Se cree
+    que el ataque fue impulsado por la mafia, ya que tiraron  a matar con un objetivo
+    directo. El animal sali\xF3 ileso, pero los testigos afirman que el caballo mostr\xF3
+    una agresividad \"inhumana\" tras el tiroteo."
+  isBurnable: 1
