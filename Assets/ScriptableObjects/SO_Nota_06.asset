@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60388a2e022b35644994b16f2db7edaa, type: 3}
+  m_Name: SO_Nota_06
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  sprite: {fileID: 0}
+  id: nota_06
+  itemName: '"PRIMICIA: PHAR LAP HA MUERTO" (Marzo, 1932)'
+  description: "Fue hallado sin vida, cubierto de sangre el cuerpo de la alegr\xEDa
+    australiana. \r\nEl famoso caballo de carreras, Phar Lap, el d\xEDa de hoy fue
+    encontrado muerto por su veterinario, quien se dirig\xEDa a realizar un control
+    de rutina al establo, se dice que fue envenenamiento. A pocos metros del establo,
+    tambien se encontraba su due\xF1o abatido, lo que nos indica que fue un asesinato
+    planificado, probablemente impulsado por la mafia.\r\n"
+  isBurnable: 1

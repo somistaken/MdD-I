@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   sprite: {fileID: 0}
   id: nota_01
-  itemName: Nota de sala de estar
-  description: '"Parece estar manchado con algo rojo..."'
+  itemName: "\"\u2019\xBFVerg\xFCenza Nacional?\" (Enero, 1928)"
+  description: "Harry Telford cuenta al diario \u201CThe Real Note\u201D que tiene
+    al pr\xF3ximo caballo campe\xF3n en su establo.Totalmente opuesto a las cr\xEDticas,
+    que, indican que su potrillo es un claro hazmerre\xEDr y que no llegar\xEDa a
+    correr cien metros sin morirse, Harry se mantiene firme a su pensamiento."
   isBurnable: 1

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60388a2e022b35644994b16f2db7edaa, type: 3}
+  m_Name: SO_Nota_07
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  sprite: {fileID: 0}
+  id: nota_07
+  itemName: "\"La verdad detr\xE1s del Terror Rojo\" (Abril, 1932)"
+  description: "Tras la autopsia realizada la semana pasada, la polic\xEDa local
+    indica que Phar Lap fue envenenado y acribillado. Lo que llam\xF3 la atenci\xF3n
+    de los m\xE9dicos fue que su coraz\xF3n ten\xEDa un tama\xF1o mucho m\xE1s grande
+    a comparaci\xF3n de otros caballos y que adem\xE1s su sangre era de un color
+    bastante oscuro y con muchos co\xE1gulos\u2026 no era normal encontrar esto en
+    el cad\xE1ver de un animal."
+  isBurnable: 1

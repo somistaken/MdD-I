@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60388a2e022b35644994b16f2db7edaa, type: 3}
+  m_Name: SO_Nota_08
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  sprite: {fileID: 0}
+  id: nota_08
+  itemName: "\"El \xDAltimo Adi\xF3s\" (Mayo, 1932)"
+  description: "El cuerpo de Phar Lap, fue trasladado a su lugar de origen en Australia,
+    donde se realiz\xF3 un funeral a gran escala, se estableci\xF3 un duelo nacional
+    por dos d\xEDas y se iz\xF3 la bandera a media asta."
+  isBurnable: 1
