@@ -66,6 +66,12 @@ public class EnemyAI : MonoBehaviour
     {
         if (isPlayerInSafeZone)
         {
+            if (hasSpottedPlayer || isInvestigating)
+            {
+                walkPointSet = false;
+                agent.ResetPath();
+            }
+
             playerInSightRange = false;
             playerInCaptureRange = false;
             hasSpottedPlayer = false;
@@ -77,7 +83,7 @@ public class EnemyAI : MonoBehaviour
             Patrolling();
             return;
         }
-        
+
         playerInSightRange = CheckLineOfSight(sightRange);
         playerInCaptureRange = CheckLineOfSight(captureRange);
 
@@ -119,7 +125,11 @@ public class EnemyAI : MonoBehaviour
         else
         {
             currentSpotTimer = 0f;
-            hasPlayedStareSound = false;
+
+            if (!hasSpottedPlayer && !isInvestigating)
+            {
+                hasPlayedStareSound = false;
+            }
 
             if (hasSpottedPlayer && !isInvestigating)
             {
@@ -191,25 +201,33 @@ public class EnemyAI : MonoBehaviour
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
+        {
             agent.SetDestination(walkPoint);
 
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+            if (agent.pathStatus == NavMeshPathStatus.PathPartial || agent.pathStatus == NavMeshPathStatus.PathInvalid)
+            {
+                walkPointSet = false;
+                return;
+            }
 
-        //Se llego al punto deseado
-        if (distanceToWalkPoint.sqrMagnitude < 1f)
-            walkPointSet = false;
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            {
+                walkPointSet = false;
+            }
+        }
     }
 
     private void SearchWalkPoint()
     {
-        //Calcular punto random para desplazarse
         float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
         float randomX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+        Vector3 randomPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        NavMeshHit hit;
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        {
+        if (NavMesh.SamplePosition(randomPoint, out hit, 2f, NavMesh.AllAreas))
+        {   
+            walkPoint = hit.position;
             walkPointSet = true;
         }
     }
@@ -222,7 +240,6 @@ public class EnemyAI : MonoBehaviour
 
     private void CapturePlayer()
     {
-        //Nos aseguramos que el enemigo no se mueva cuando trata de capturar
         agent.SetDestination(transform.position);
 
         Vector3 lookPosition = player.position;
@@ -287,6 +304,8 @@ public class EnemyAI : MonoBehaviour
                 hasSpottedPlayer = false;
                 isInvestigating = false;
                 currentInvestigateTimer = 0f;
+
+                hasPlayedStareSound = false;
             }
         }
     }
