@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Rendering.VirtualTexturing;
 
 public class EnemyAI : MonoBehaviour
 {
