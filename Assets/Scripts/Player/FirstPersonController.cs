@@ -11,6 +11,8 @@ public class FirstPersonController : MonoBehaviour
     [Header("Jump parameters")]
     [SerializeField] private float jumpForce = 1.0f;
     [SerializeField] private float gravityMultiplier = 1.0f;
+    [SerializeField] private float jumpCooldown = 1.2f;
+    private float jumpTimer = 0f;
 
     [Header("Look Parameters")]
     [SerializeField] private float mouseSensitivity = 0.1f;
@@ -54,11 +56,17 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleJumping()
     {
+        if (jumpTimer > 0f)
+        {
+            jumpTimer -= Time.deltaTime;
+        }
+
         currentMovement.y = -0.5f;
-        if (playerInputHandler.JumpTriggered)
+        if (playerInputHandler.JumpTriggered && jumpTimer <= 0f)
         {
             currentMovement.y = jumpForce;
             animator.SetTrigger("Jump");
+            jumpTimer = jumpCooldown;
         }
     }
 
