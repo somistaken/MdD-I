@@ -1,65 +1,74 @@
-using System.Collections;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
     private Animator doorAnim;
     private bool doorIsOpen;
-    private int doorStuckTreshhold;
+    private bool openedInward;
+    private int doorStuckThreshold;
     private int doorAttempts;
 
     private void Awake()
     {
         doorIsOpen = false;
-        doorAnim = GetComponent<Animator>();
         doorAttempts = 0;
-        doorStuckTreshhold = 5;
+        doorStuckThreshold = 5;
+        doorAnim = GetComponent<Animator>();
     }
 
     public void Interact()
     {
-        // return si la puerta esta en movimiento
-        if (doorAnim.GetCurrentAnimatorStateInfo(0).length > doorAnim.GetCurrentAnimatorStateInfo(0).normalizedTime)
+        AnimatorStateInfo stateInfo = doorAnim.GetCurrentAnimatorStateInfo(0);
+
+        if (doorAnim.IsInTransition(0) || (!stateInfo.IsName("Idle") && stateInfo.normalizedTime < 1f))
         {
             return;
         }
 
-        // despues de abrir la puerta 5 veces return hasta que tengas aceite en el inventario (hay que balancear)
-        if (doorAttempts > doorStuckTreshhold)
+        if (doorAttempts > doorStuckThreshold)
         {
             if (PlayerInventory.GetInstance().IsItemInInventory("oil"))
             {
                 doorAttempts = 0;
                 PlayerInventory.GetInstance().RemoveItem("oil");
             }
-            // audio de puerta trabada
-            Debug.Log("Door is stuck");
+            else
+            {
+                Debug.Log("La puerta está trabada. Se necesita aceite.");
+            }
             return;
         }
 
-        if (!doorIsOpen)
+        doorIsOpen = !doorIsOpen;
+
+        if (doorIsOpen)
         {
-            doorIsOpen = true;
-            doorAnim.Play("DoorOpen");
-            //StartCoroutine(DisableCollision());
+            Vector3 directionToPlayer = (Camera.main.transform.position - transform.position).normalized;
+            float dotProduct = Vector3.Dot(transform.right, directionToPlayer);
+
+            if (dotProduct > 0)
+            {
+                doorAnim.Play("DoorOpenInward");
+                openedInward = true;
+            }
+            else
+            {
+                doorAnim.Play("DoorOpenOutward");
+                openedInward = false;
+            }
         }
         else
         {
-            doorIsOpen = false;
-            doorAnim.Play("DoorClose");
-            doorAttempts++;
-            //StartCoroutine(DisableCollision());
+            if (openedInward)
+            {
+                doorAnim.Play("DoorCloseInward");
+            }
+            else
+            {
+                doorAnim.Play("DoorCloseOutward");
+            }
         }
+
+        doorAttempts++;
     }
-
-    // quiero desactivar la colision cuando la puerta esta en movimiento
-    // de esta manera el pj se queda trabado si estas en el lugar de la puerta cuando la colision se activa de nuevo
-    //private IEnumerator DisableCollision()
-    //{
-    //    gameObject.GetComponent<Collider>().enabled = false;
-
-    //    yield return new WaitForSeconds(1f);
-
-    //    gameObject.GetComponent<Collider>().enabled = true;
-    //}
 }
