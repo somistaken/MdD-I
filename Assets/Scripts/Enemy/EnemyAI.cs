@@ -9,8 +9,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform player;
     [SerializeField] private Transform safeZoneSpawnPoint;
-    [SerializeField] private LayerMask whatIsGround;
-    [SerializeField] private LayerMask whatIsPlayer;
+    [SerializeField] private LayerMask environmentMask;
+    [SerializeField] private LayerMask playerMask;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip stareSound;
 
@@ -190,7 +190,7 @@ public class EnemyAI : MonoBehaviour
                 Vector3 target = player.position + Vector3.up * eyeHeightOffset;
                 Vector3 rayDirection = target - origin;
 
-                if (Physics.Raycast(origin, rayDirection.normalized, out RaycastHit hit, distanceToPlayer, whatIsGround))
+                if (Physics.Raycast(origin, rayDirection.normalized, out RaycastHit hit, distanceToPlayer, environmentMask))
                 {
                     return false;
                 }

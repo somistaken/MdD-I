@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
@@ -7,6 +8,7 @@ public class DoorController : MonoBehaviour, IInteractable
     private bool openedInward;
     private int doorStuckThreshold;
     private int doorAttempts;
+    private NavMeshObstacle navObstacle;
 
     private void Awake()
     {
@@ -14,6 +16,9 @@ public class DoorController : MonoBehaviour, IInteractable
         doorAttempts = 0;
         doorStuckThreshold = 5;
         doorAnim = GetComponent<Animator>();
+
+        navObstacle = GetComponent<NavMeshObstacle>();
+        if (navObstacle != null) navObstacle.carving = true;
     }
 
     public void Interact()
@@ -43,6 +48,8 @@ public class DoorController : MonoBehaviour, IInteractable
 
         if (doorIsOpen)
         {
+            if (navObstacle != null) navObstacle.carving = false;
+
             Vector3 directionToPlayer = (Camera.main.transform.position - transform.position).normalized;
             float dotProduct = Vector3.Dot(transform.right, directionToPlayer);
 
@@ -59,6 +66,8 @@ public class DoorController : MonoBehaviour, IInteractable
         }
         else
         {
+            if (navObstacle != null) navObstacle.carving = true;
+
             if (openedInward)
             {
                 doorAnim.Play("DoorCloseInward");
