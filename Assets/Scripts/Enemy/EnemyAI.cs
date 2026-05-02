@@ -34,8 +34,9 @@ public class EnemyAI : MonoBehaviour
     [Header("Detection Ranges")]
     [SerializeField] private float sightRange;
     [SerializeField] private float captureRange;
-    [Tooltip("Eye height for raycast")]
+    [Tooltip("Eye height for raycast/FOV")]
     [SerializeField] private float eyeHeightOffset;
+    [SerializeField] private float fieldOfViewAngle = 90f;
 
     [Header("Detection Timers")]
     [SerializeField] private float timeToSpotPlayer;
@@ -87,8 +88,8 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        playerInSightRange = CheckLineOfSight(sightRange);
-        playerInCaptureRange = CheckLineOfSight(captureRange);
+        playerInSightRange = CheckLineOfSight(sightRange, true);
+        playerInCaptureRange = CheckLineOfSight(captureRange, false);
 
         //Si el player esta en rango de captura cerca no espera
         if (playerInCaptureRange)
@@ -173,25 +174,29 @@ public class EnemyAI : MonoBehaviour
         
     }
 
-    private bool CheckLineOfSight(float range)
+    private bool CheckLineOfSight(float range, bool checkAngle = true)
     {
-        // Dentro de la esfera?
-        if (Physics.CheckSphere(transform.position, range, whatIsPlayer))
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= range)
         {
-            //raycast
-            Vector3 origin = transform.position + Vector3.up * eyeHeightOffset;
-            Vector3 target = player.position + Vector3.up * eyeHeightOffset;
-            Vector3 direction = target - origin;
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
 
-            float distanceToPlayer = direction.magnitude;
+            float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
-            //actual check
-            if (Physics.Raycast(origin, direction.normalized, out RaycastHit hit, distanceToPlayer, whatIsGround))
+            if (!checkAngle || angleToPlayer < fieldOfViewAngle / 2f)
             {
-                return false;
-            }
+                Vector3 origin = transform.position + Vector3.up * eyeHeightOffset;
+                Vector3 target = player.position + Vector3.up * eyeHeightOffset;
+                Vector3 rayDirection = target - origin;
 
-            return true;
+                if (Physics.Raycast(origin, rayDirection.normalized, out RaycastHit hit, distanceToPlayer, whatIsGround))
+                {
+                    return false;
+                }
+
+                return true;
+            }
         }
 
         return false;
