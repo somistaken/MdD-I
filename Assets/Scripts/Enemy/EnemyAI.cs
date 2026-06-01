@@ -171,7 +171,7 @@ public class EnemyAI : MonoBehaviour
             }
         }
 
-        
+
     }
 
     private bool CheckLineOfSight(float range, bool checkAngle = true)
@@ -234,7 +234,7 @@ public class EnemyAI : MonoBehaviour
         NavMeshHit hit;
 
         if (NavMesh.SamplePosition(randomPoint, out hit, 2f, NavMesh.AllAreas))
-        {   
+        {
             walkPoint = hit.position;
             walkPointSet = true;
         }
@@ -296,11 +296,11 @@ public class EnemyAI : MonoBehaviour
         agent.speed = chaseSpeed;
         agent.SetDestination(lastKnownPosition);
 
-        
+
         Vector3 distanceToPoint = transform.position - lastKnownPosition;
         distanceToPoint.y = 0;
 
-        
+
         if (distanceToPoint.sqrMagnitude < 2f)
         {
             agent.ResetPath();
@@ -327,5 +327,18 @@ public class EnemyAI : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(transform.position + Vector3.up * eyeHeightOffset, transform.forward * sightRange);
+    }
+
+    public void ReceiveAlert(Vector3 alertPosition)
+    {
+        walkPointSet = false;
+        agent.ResetPath();
+
+        lastKnownPosition = alertPosition;
+        isInvestigating = true;
+        hasSpottedPlayer = false;
+        currentInvestigateTimer = 0f;
+
+        currentSpotTimer = 0f;
     }
 }
