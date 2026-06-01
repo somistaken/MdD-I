@@ -153894,11 +153894,11 @@ MonoBehaviour:
   audioSource: {fileID: 310015655}
   stareSound: {fileID: 8300000, guid: a084aebc7ddb04143ac7a4434663255e, type: 3}
   patrolSpeed: 2.5
-  chaseSpeed: 15
+  chaseSpeed: 10
   walkPointRange: 5
   timeBetweenTries: 2
   maxCaptures: 3
-  sightRange: 15
+  sightRange: 10
   captureRange: 2
   eyeHeightOffset: 0.53
   fieldOfViewAngle: 90
@@ -162655,7 +162655,7 @@ MonoBehaviour:
   mainCamera: {fileID: 330585545}
   playerInputHandler: {fileID: 1049430678}
   animator: {fileID: 1592925538}
-  acceleration: 10
+  acceleration: 15
   deceleration: 15
 --- !u!95 &1592925538
 Animator:
