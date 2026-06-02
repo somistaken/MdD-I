@@ -20,17 +20,20 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
 
         if (hasAllNotes)
         {
-            Debug.Log("won");
+            Debug.Log("won"); // Esto lo cambiamos después para la secuencia final
 
             foreach (string noteID in requiredNoteIDs)
             {
                 PlayerInventory.GetInstance().RemoveItem(noteID);
             }
-
         }
         else
         {
-            Debug.Log("notes left around");
+            // LLAMAMOS A LA UI EN LUGAR DEL DEBUG.LOG
+            if (FeedbackUI.GetInstance() != null)
+            {
+                FeedbackUI.GetInstance().ShowMessage("Aún faltan notas por encontrar...");
+            }
         }
     }
 }
