@@ -5,6 +5,9 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
     [Header("notes for wincon")]
     [SerializeField] private string[] requiredNoteIDs;
 
+    [Header("Exit Trigger Setup")]
+    [SerializeField] private ExitDoor mainExitDoor;
+
     public void Interact()
     {
         bool hasAllNotes = true;
@@ -20,7 +23,10 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
 
         if (hasAllNotes)
         {
-            Debug.Log("won"); // Esto lo cambiamos después para la secuencia final
+            if (mainExitDoor != null)
+            {
+                mainExitDoor.Unlock();
+            }
 
             foreach (string noteID in requiredNoteIDs)
             {
@@ -29,7 +35,6 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
         }
         else
         {
-            // LLAMAMOS A LA UI EN LUGAR DEL DEBUG.LOG
             if (FeedbackUI.GetInstance() != null)
             {
                 FeedbackUI.GetInstance().ShowMessage("Aún faltan notas por encontrar...");
