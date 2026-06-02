@@ -16,6 +16,8 @@ public class LampToggle : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         if (playerInputHandler.LampToggle() && PlayerInventory.GetInstance().IsItemInInventory(lamp))
         {
             ToggleLamp();

@@ -16,6 +16,8 @@ public class InteractionHandler : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         if (playerInputHandler.Interaction())
         {
             Ray r = new Ray(interactionSource.position, interactionSource.forward);

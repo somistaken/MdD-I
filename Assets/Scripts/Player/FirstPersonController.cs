@@ -38,6 +38,8 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         HandleMovement();
         HandleRotation();
         UpdateAnimations();
