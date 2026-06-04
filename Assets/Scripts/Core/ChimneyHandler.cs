@@ -2,12 +2,18 @@ using UnityEngine;
 
 public class ChimneyHandler : MonoBehaviour, IInteractable
 {
-    [Header("notes for wincon")]
+    [Header("Notes for Wincon")]
     [SerializeField] private string[] requiredNoteIDs;
 
     [Header("Final Event Setup")]
     [SerializeField] private ExitDoor mainExitDoor;
     [SerializeField] private EnemyAI pharLapAI;
+
+    [Header("Atmosphere Setup")]
+    [Tooltip("Los objetos padre que contienen las luces (ej: [Lighting] y Lights)")]
+    [SerializeField] private Transform[] lightContainers;
+    [SerializeField] private Color finalEventColor = Color.red;
+    [SerializeField] private float finalEventIntensityMultiplier = 1.5f;
 
     public void Interact()
     {
@@ -34,6 +40,8 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
                 pharLapAI.TriggerFinalChase();
             }
 
+            TriggerRedAlertLights();
+
             foreach (string noteID in requiredNoteIDs)
             {
                 PlayerInventory.GetInstance().RemoveItem(noteID);
@@ -43,7 +51,27 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
         {
             if (FeedbackUI.GetInstance() != null)
             {
-                FeedbackUI.GetInstance().ShowMessage("Aún faltan encontrar algunas notas...");
+                FeedbackUI.GetInstance().ShowMessage("Aún faltan notas por encontrar...");
+            }
+        }
+    }
+
+    private void TriggerRedAlertLights()
+    {
+        if (lightContainers == null || lightContainers.Length == 0) return;
+
+        foreach (Transform container in lightContainers)
+        {
+            if (container == null) continue;
+
+            Light[] lightsInContainer = container.GetComponentsInChildren<Light>();
+
+            foreach (Light light in lightsInContainer)
+            {
+                if (light.gameObject.CompareTag("Player")) continue;
+
+                light.color = finalEventColor;
+                light.intensity *= finalEventIntensityMultiplier;
             }
         }
     }

@@ -739,6 +739,11 @@ MonoBehaviour:
   - nota_10
   mainExitDoor: {fileID: 673249458}
   pharLapAI: {fileID: 310015650}
+  lightContainers:
+  - {fileID: 1712745516}
+  - {fileID: 988815953}
+  finalEventColor: {r: 1, g: 0, b: 0, a: 1}
+  finalEventIntensityMultiplier: 1.5
 --- !u!1 &57750283
 GameObject:
   m_ObjectHideFlags: 0
