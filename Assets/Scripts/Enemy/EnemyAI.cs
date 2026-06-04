@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -55,6 +54,7 @@ public class EnemyAI : MonoBehaviour
     private bool playerInCaptureRange;
     private bool hasPlayedStareSound;
     public bool isPlayerInSafeZone;
+    private bool isFinalChase = false;
 
     private void Awake()
     {
@@ -64,6 +64,11 @@ public class EnemyAI : MonoBehaviour
     public void SetPlayerReference(Transform targetPlayer)
     {
         player = targetPlayer;
+    }
+
+    public void TriggerFinalChase()
+    {
+        isFinalChase = true;
     }
 
     private void Update()
@@ -88,17 +93,29 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
+        if (isFinalChase)
+        {
+            playerInCaptureRange = CheckLineOfSight(captureRange, false);
+
+            if (playerInCaptureRange)
+            {
+                CapturePlayer();
+            }
+            else
+            {
+                ChasePlayer();
+            }
+            return;
+        }
+
         playerInSightRange = CheckLineOfSight(sightRange, true);
         playerInCaptureRange = CheckLineOfSight(captureRange, false);
 
-        //Si el player esta en rango de captura cerca no espera
         if (playerInCaptureRange)
         {
             hasSpottedPlayer = true;
             isInvestigating = false;
         }
-
-        //Ver al player
         else if (playerInSightRange)
         {
             if (isInvestigating)
@@ -124,8 +141,6 @@ public class EnemyAI : MonoBehaviour
                 }
             }
         }
-
-        //El player se escondio
         else
         {
             currentSpotTimer = 0f;
@@ -170,8 +185,6 @@ public class EnemyAI : MonoBehaviour
                 Patrolling();
             }
         }
-
-
     }
 
     private bool CheckLineOfSight(float range, bool checkAngle = true)
@@ -290,16 +303,13 @@ public class EnemyAI : MonoBehaviour
         Invoke(nameof(ResetCapture), timeBetweenTries);
     }
 
-    //Sistema de memoria aka recordar la ultima pos del player
     private void Investigate()
     {
         agent.speed = chaseSpeed;
         agent.SetDestination(lastKnownPosition);
 
-
         Vector3 distanceToPoint = transform.position - lastKnownPosition;
         distanceToPoint.y = 0;
-
 
         if (distanceToPoint.sqrMagnitude < 2f)
         {

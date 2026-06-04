@@ -738,6 +738,7 @@ MonoBehaviour:
   - nota_09
   - nota_10
   mainExitDoor: {fileID: 673249458}
+  pharLapAI: {fileID: 310015650}
 --- !u!1 &57750283
 GameObject:
   m_ObjectHideFlags: 0
@@ -154427,7 +154428,7 @@ GameObject:
   - component: {fileID: 310015649}
   - component: {fileID: 310015655}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Enemigo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

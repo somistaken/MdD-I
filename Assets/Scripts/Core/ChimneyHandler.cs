@@ -5,8 +5,9 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
     [Header("notes for wincon")]
     [SerializeField] private string[] requiredNoteIDs;
 
-    [Header("Exit Trigger Setup")]
+    [Header("Final Event Setup")]
     [SerializeField] private ExitDoor mainExitDoor;
+    [SerializeField] private EnemyAI pharLapAI;
 
     public void Interact()
     {
@@ -28,6 +29,11 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
                 mainExitDoor.Unlock();
             }
 
+            if (pharLapAI != null)
+            {
+                pharLapAI.TriggerFinalChase();
+            }
+
             foreach (string noteID in requiredNoteIDs)
             {
                 PlayerInventory.GetInstance().RemoveItem(noteID);
@@ -37,7 +43,7 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
         {
             if (FeedbackUI.GetInstance() != null)
             {
-                FeedbackUI.GetInstance().ShowMessage("Aún faltan notas por encontrar...");
+                FeedbackUI.GetInstance().ShowMessage("Aún faltan encontrar algunas notas...");
             }
         }
     }
