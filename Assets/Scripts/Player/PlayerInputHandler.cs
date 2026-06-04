@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    public static PlayerInputHandler instance { get; private set; }
+
     [Header("Input Action Asset")]
     [SerializeField] private InputActionAsset playerControls;
 
@@ -40,6 +42,11 @@ public class PlayerInputHandler : MonoBehaviour
         interactAction = mapReference.FindAction(interaction);
         lampAction = mapReference.FindAction(lamp);
         SubscribeActionValuesToInputEvents();
+    }
+
+    private void Start()
+    {
+        instance = this;
     }
 
     private void SubscribeActionValuesToInputEvents()
