@@ -1,14 +1,18 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SafeZoneTrigger : MonoBehaviour
 {
     [SerializeField] private EnemyAI enemyAI;
+    [SerializeField] private AudioMixerSnapshot general;
+    [SerializeField] private AudioMixerSnapshot safeRoom;
+    [SerializeField] private float musicFade;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            AudioManager.GetInstance().ChangeMusic(AudioManager.SoundType.musicSafeRoom);
+            safeRoom.TransitionTo(musicFade);
             if (enemyAI != null)
             {
                 enemyAI.isPlayerInSafeZone = true;
@@ -20,7 +24,7 @@ public class SafeZoneTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            AudioManager.GetInstance().ChangeMusic(AudioManager.SoundType.musicGeneral);
+            general.TransitionTo(musicFade);
             if (enemyAI != null)
             {
                 enemyAI.isPlayerInSafeZone = false;
