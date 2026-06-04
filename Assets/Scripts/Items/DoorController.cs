@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class DoorController : MonoBehaviour, IInteractable
 {
     private Animator doorAnim;
+    private AudioSource doorSound;
     private bool doorIsOpen;
     private bool openedInward;
     private int doorStuckThreshold;
@@ -16,6 +17,7 @@ public class DoorController : MonoBehaviour, IInteractable
         doorAttempts = 0;
         doorStuckThreshold = 5;
         doorAnim = GetComponent<Animator>();
+        doorSound = GetComponent<AudioSource>();
 
         navObstacle = GetComponent<NavMeshObstacle>();
         if (navObstacle != null) navObstacle.carving = true;
@@ -39,7 +41,7 @@ public class DoorController : MonoBehaviour, IInteractable
             }
             else
             {
-                Debug.Log("La puerta está trabada. Se necesita aceite.");
+                FeedbackUI.GetInstance().ShowMessage("La puerta está trabada. Necesito aceite...");
             }
             return;
         }
@@ -57,11 +59,13 @@ public class DoorController : MonoBehaviour, IInteractable
             {
                 doorAnim.Play("DoorOpenInward");
                 openedInward = true;
+                doorSound.Play();
             }
             else
             {
                 doorAnim.Play("DoorOpenOutward");
                 openedInward = false;
+                doorSound.Play();
             }
         }
         else
@@ -71,10 +75,12 @@ public class DoorController : MonoBehaviour, IInteractable
             if (openedInward)
             {
                 doorAnim.Play("DoorCloseInward");
+                doorSound.Play();
             }
             else
             {
                 doorAnim.Play("DoorCloseOutward");
+                doorSound.Play();
             }
         }
 
