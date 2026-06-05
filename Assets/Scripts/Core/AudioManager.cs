@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
         dialogueMainDoor,
         dialogueSafeRoom1,
         dialogueSafeRoom2,
+        owlAlert,
         // agregar mas sonidos que hagan falta
     }
 
@@ -78,4 +79,5 @@ public class AudioManager : MonoBehaviour
 
         Destroy(soundObject, s.clip.length);
     }
+
 }
