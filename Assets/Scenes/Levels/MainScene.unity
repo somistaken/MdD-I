@@ -1273,6 +1273,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorFrame (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4294025779577257803, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4620110903655151884, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1289,6 +1293,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f91d23e3f7d7cca4c9a4e31e736daa2f, type: 2}
+    - target: {fileID: 8267860648371530838, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8832198733935433636, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1354,7 +1362,8 @@ GameObject:
   - component: {fileID: 114203050}
   - component: {fileID: 114203052}
   - component: {fileID: 114203051}
-  m_Layer: 0
+  - component: {fileID: 114203053}
+  m_Layer: 3
   m_Name: MOBILE NATURAL 3-TIER (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1433,6 +1442,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114203049}
   m_Mesh: {fileID: -7566048364153258308, guid: 1b646d6e75490fb4289b1587f6283fb4, type: 3}
+--- !u!65 &114203053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114203049}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0051952954, y: 0.0030587066, z: 0.0047823456}
+  m_Center: {x: 0.002410697, y: -7.339517e-13, z: 0.000018653614}
 --- !u!1 &114582664
 GameObject:
   m_ObjectHideFlags: 0
@@ -155085,8 +155115,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 6
-      minScalar: 3
+      scalar: 2
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -159736,7 +159766,9 @@ GameObject:
   - component: {fileID: 296954207}
   - component: {fileID: 296954209}
   - component: {fileID: 296954208}
-  m_Layer: 0
+  - component: {fileID: 296954211}
+  - component: {fileID: 296954210}
+  m_Layer: 3
   m_Name: Large Mobile Gin Bar (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159815,6 +159847,48 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296954206}
   m_Mesh: {fileID: 4071377124192306372, guid: 1b646d6e75490fb4289b1587f6283fb4, type: 3}
+--- !u!65 &296954210
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296954206}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0071443957, y: 0.016051285, z: 0.00954423}
+  m_Center: {x: -0.0065899417, y: -0.004542936, z: 0.0048177275}
+--- !u!65 &296954211
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296954206}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02517411, y: 0.0065418356, z: 0.00954423}
+  m_Center: {x: 0.0024249305, y: 0.00021178811, z: 0.0048177275}
 --- !u!1 &310015648
 GameObject:
   m_ObjectHideFlags: 0
@@ -160102,7 +160176,8 @@ GameObject:
   - component: {fileID: 323230471}
   - component: {fileID: 323230473}
   - component: {fileID: 323230472}
-  m_Layer: 0
+  - component: {fileID: 323230474}
+  m_Layer: 3
   m_Name: wooden shelf (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160181,6 +160256,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323230470}
   m_Mesh: {fileID: 5433230159046845396, guid: 1b646d6e75490fb4289b1587f6283fb4, type: 3}
+--- !u!65 &323230474
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323230470}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.018240891, y: 0.0075792884, z: 0.015288985}
+  m_Center: {x: 0.00016450674, y: 0.0000042371016, z: -0.0017566085}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -167425,7 +167521,8 @@ GameObject:
   - component: {fileID: 838280238}
   - component: {fileID: 838280240}
   - component: {fileID: 838280239}
-  m_Layer: 0
+  - component: {fileID: 838280241}
+  m_Layer: 3
   m_Name: wooden shelf (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167504,6 +167601,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838280237}
   m_Mesh: {fileID: 5433230159046845396, guid: 1b646d6e75490fb4289b1587f6283fb4, type: 3}
+--- !u!65 &838280241
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838280237}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.018240891, y: 0.0075792884, z: 0.015288985}
+  m_Center: {x: 0.00016450674, y: 0.000004177497, z: -0.0017566094}
 --- !u!43 &840646004
 Mesh:
   m_ObjectHideFlags: 0
@@ -167983,7 +168101,8 @@ GameObject:
   - component: {fileID: 849589109}
   - component: {fileID: 849589111}
   - component: {fileID: 849589110}
-  m_Layer: 0
+  - component: {fileID: 849589112}
+  m_Layer: 3
   m_Name: wooden shelf (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168062,6 +168181,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849589108}
   m_Mesh: {fileID: 5433230159046845396, guid: 1b646d6e75490fb4289b1587f6283fb4, type: 3}
+--- !u!65 &849589112
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849589108}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.018240891, y: 0.0075792884, z: 0.015288985}
+  m_Center: {x: 0.00016450674, y: 0.0000042371016, z: -0.0017566085}
 --- !u!43 &856675797
 Mesh:
   m_ObjectHideFlags: 0
@@ -169638,7 +169778,9 @@ GameObject:
   - component: {fileID: 930664163}
   - component: {fileID: 930664165}
   - component: {fileID: 930664164}
-  m_Layer: 0
+  - component: {fileID: 930664167}
+  - component: {fileID: 930664166}
+  m_Layer: 3
   m_Name: Large Mobile Gin Bar (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169717,6 +169859,48 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930664162}
   m_Mesh: {fileID: 4071377124192306372, guid: 1b646d6e75490fb4289b1587f6283fb4, type: 3}
+--- !u!65 &930664166
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930664162}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0066371514, y: 0.016051281, z: 0.00954423}
+  m_Center: {x: -0.0068436167, y: -0.0045428853, z: 0.0048177275}
+--- !u!65 &930664167
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930664162}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02517411, y: 0.006472432, z: 0.00954423}
+  m_Center: {x: 0.0024248636, y: 0.0002465388, z: 0.0048177275}
 --- !u!1 &931325788
 GameObject:
   m_ObjectHideFlags: 0
@@ -171461,6 +171645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorFrame (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4294025779577257803, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4620110903655151884, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -171477,6 +171665,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f91d23e3f7d7cca4c9a4e31e736daa2f, type: 2}
+    - target: {fileID: 8267860648371530838, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8832198733935433636, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -173356,6 +173548,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorFrame (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4294025779577257803, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4620110903655151884, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -173372,6 +173568,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f91d23e3f7d7cca4c9a4e31e736daa2f, type: 2}
+    - target: {fileID: 8267860648371530838, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8832198733935433636, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -175867,6 +176067,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorFrame (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4294025779577257803, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4620110903655151884, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -175883,6 +176087,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f91d23e3f7d7cca4c9a4e31e736daa2f, type: 2}
+    - target: {fileID: 8267860648371530838, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8832198733935433636, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -176837,7 +177045,8 @@ GameObject:
   - component: {fileID: 1273574985}
   - component: {fileID: 1273574987}
   - component: {fileID: 1273574986}
-  m_Layer: 0
+  - component: {fileID: 1273574988}
+  m_Layer: 3
   m_Name: smallTable (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176916,6 +177125,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273574984}
   m_Mesh: {fileID: -1784544467240246206, guid: 1b646d6e75490fb4289b1587f6283fb4, type: 3}
+--- !u!65 &1273574988
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273574984}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.013112396, y: 0.0074697337, z: 0.008242379}
+  m_Center: {x: -0.00006326661, y: 0.000012385656, z: 0.00010139309}
 --- !u!1 &1303297045
 GameObject:
   m_ObjectHideFlags: 0
@@ -178686,7 +178916,8 @@ GameObject:
   - component: {fileID: 1385522927}
   - component: {fileID: 1385522929}
   - component: {fileID: 1385522928}
-  m_Layer: 0
+  - component: {fileID: 1385522930}
+  m_Layer: 3
   m_Name: rustic wooden chair (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178765,6 +178996,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385522926}
   m_Mesh: {fileID: 6371898392565298695, guid: 1b646d6e75490fb4289b1587f6283fb4, type: 3}
+--- !u!65 &1385522930
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385522926}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0039263465, y: 0.004040572, z: 0.0046301596}
+  m_Center: {x: 0.0001222551, y: -0.0014537532, z: 0.002346232}
 --- !u!43 &1395402351
 Mesh:
   m_ObjectHideFlags: 0
@@ -181339,7 +181591,7 @@ GameObject:
   - component: {fileID: 1513944313}
   - component: {fileID: 1513944315}
   - component: {fileID: 1513944314}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: rustic wooden chair (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183052,6 +183304,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorFrame (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4294025779577257803, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4620110903655151884, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -183068,6 +183324,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f91d23e3f7d7cca4c9a4e31e736daa2f, type: 2}
+    - target: {fileID: 8267860648371530838, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8832198733935433636, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -183546,7 +183806,7 @@ GameObject:
   - component: {fileID: 1634999959}
   - component: {fileID: 1634999961}
   - component: {fileID: 1634999960}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bigTable (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184971,7 +185231,8 @@ GameObject:
   - component: {fileID: 1712052158}
   - component: {fileID: 1712052160}
   - component: {fileID: 1712052159}
-  m_Layer: 0
+  - component: {fileID: 1712052161}
+  m_Layer: 3
   m_Name: rustic wooden chair (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185050,6 +185311,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712052157}
   m_Mesh: {fileID: 6371898392565298695, guid: 1b646d6e75490fb4289b1587f6283fb4, type: 3}
+--- !u!65 &1712052161
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712052157}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.003926347, y: 0.0040405723, z: 0.008931571}
+  m_Center: {x: 0.00012222734, y: -0.0014537537, z: 0.004496934}
 --- !u!1 &1712745515
 GameObject:
   m_ObjectHideFlags: 0
@@ -185619,7 +185901,8 @@ GameObject:
   - component: {fileID: 1774987294}
   - component: {fileID: 1774987296}
   - component: {fileID: 1774987295}
-  m_Layer: 0
+  - component: {fileID: 1774987297}
+  m_Layer: 3
   m_Name: rustic wooden chair (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185698,6 +185981,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774987293}
   m_Mesh: {fileID: 6371898392565298695, guid: 1b646d6e75490fb4289b1587f6283fb4, type: 3}
+--- !u!65 &1774987297
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774987293}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.003926346, y: 0.004040569, z: 0.008931567}
+  m_Center: {x: 0.00012231653, y: -0.0014537527, z: 0.004496932}
 --- !u!1 &1780785448
 GameObject:
   m_ObjectHideFlags: 0
@@ -188190,6 +188494,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorFrame (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4294025779577257803, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4620110903655151884, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -188206,6 +188514,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f91d23e3f7d7cca4c9a4e31e736daa2f, type: 2}
+    - target: {fileID: 8267860648371530838, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8832198733935433636, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -192031,7 +192343,8 @@ GameObject:
   - component: {fileID: 4310171560325084063}
   - component: {fileID: 2743393327458372221}
   - component: {fileID: 3282157183235400761}
-  m_Layer: 0
+  - component: {fileID: 4310171560325084064}
+  m_Layer: 3
   m_Name: rustic wooden chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192178,7 +192491,8 @@ GameObject:
   - component: {fileID: 3427922488938763548}
   - component: {fileID: 8286362046975792828}
   - component: {fileID: 3574267819936642995}
-  m_Layer: 0
+  - component: {fileID: 8286362046975792829}
+  m_Layer: 3
   m_Name: smallTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192196,7 +192510,8 @@ GameObject:
   - component: {fileID: 6174688699266542574}
   - component: {fileID: 7212620894860553638}
   - component: {fileID: 7489049253517411506}
-  m_Layer: 0
+  - component: {fileID: 7489049253517411507}
+  m_Layer: 3
   m_Name: rustic wooden chair.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192226,6 +192541,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2003958244}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4310171560325084064
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2513682105415980261}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.003926346, y: 0.004040569, z: 0.008931567}
+  m_Center: {x: 0.00012231653, y: -0.0014537527, z: 0.0044969325}
 --- !u!23 &4350808439378674496
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -192433,13 +192769,35 @@ GameObject:
   - component: {fileID: 499917800006541950}
   - component: {fileID: 2080026520598993990}
   - component: {fileID: 2439314589301423587}
-  m_Layer: 0
+  - component: {fileID: 5018261433410967165}
+  m_Layer: 3
   m_Name: bigTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &5018261433410967165
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5018261433410967164}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.023138875, y: 0.0113332765, z: 0.008347487}
+  m_Center: {x: -0.00028262, y: 0.00004063136, z: -0.0018417013}
 --- !u!33 &5191760619093840794
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -192490,7 +192848,8 @@ GameObject:
   - component: {fileID: 8719778256442411923}
   - component: {fileID: 4199759020869262559}
   - component: {fileID: 4957929514770616446}
-  m_Layer: 0
+  - component: {fileID: 8719778256442411924}
+  m_Layer: 3
   m_Name: MOBILE NATURAL 3-TIER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192546,7 +192905,8 @@ GameObject:
   - component: {fileID: 8500575739274550552}
   - component: {fileID: 5814069665468956664}
   - component: {fileID: 4350808439378674496}
-  m_Layer: 0
+  - component: {fileID: 8500575739274550553}
+  m_Layer: 3
   m_Name: wooden shelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192564,7 +192924,7 @@ GameObject:
   - component: {fileID: 1844574426783121343}
   - component: {fileID: 2597165280975116952}
   - component: {fileID: 4854386327997785658}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Large Mobile Gin Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192620,6 +192980,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7489049253517411507
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4193576240352858422}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0039263475, y: 0.0040405733, z: 0.008931572}
+  m_Center: {x: 0.00012225701, y: -0.0014537583, z: 0.004496935}
 --- !u!33 &8286362046975792828
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -192628,6 +193009,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3817362524055014979}
   m_Mesh: {fileID: -1784544467240246206, guid: 1b646d6e75490fb4289b1587f6283fb4, type: 3}
+--- !u!65 &8286362046975792829
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3817362524055014979}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.013112395, y: 0.007469731, z: 0.008242376}
+  m_Center: {x: -0.00006320514, y: 0.000012393108, z: 0.000101393074}
 --- !u!1001 &8292908365072431520
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -192836,6 +193238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorFrame
       objectReference: {fileID: 0}
+    - target: {fileID: 4294025779577257803, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4620110903655151884, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -192843,6 +193249,10 @@ PrefabInstance:
     - target: {fileID: 4620110903655151884, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_VersionIndex
       value: 1826
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267860648371530838, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8832198733935433636, guid: 134ba6578a04e4d48bfda55a51a4b1a3, type: 3}
       propertyPath: m_Mesh
@@ -192908,6 +193318,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2003958244}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8500575739274550553
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7216418042131725420}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.018240886, y: 0.0075792805, z: 0.015288975}
+  m_Center: {x: 0.00016456656, y: 0.0000043038735, z: -0.0017566086}
 --- !u!4 &8719778256442411923
 Transform:
   m_ObjectHideFlags: 0
@@ -192923,6 +193354,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2003958244}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 49.558}
+--- !u!65 &8719778256442411924
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210499121840672186}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.005195295, y: 0.0030587066, z: 0.004782345}
+  m_Center: {x: 0.0024106374, y: 0.000000029873764, z: 0.000018652825}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
