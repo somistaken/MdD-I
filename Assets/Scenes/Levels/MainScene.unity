@@ -741,7 +741,7 @@ MonoBehaviour:
   - nota_10
   mainExitDoor: {fileID: 673249458}
   pharLapAI: {fileID: 310015650}
-  endGame: {fileID: 0}
+  endGame: {fileID: 3146542699665057915, guid: 9a7d91217c8d7e54b9a3bc3a97cd7836, type: 2}
   lightContainers:
   - {fileID: 1712745516}
   - {fileID: 988815953}
@@ -176551,7 +176551,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 58a468c1e9f603442906117f4bce474b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -183545,42 +183545,42 @@ MonoBehaviour:
     source: {fileID: 0}
   - type: 2
     clip: {fileID: 8300000, guid: 565c29428519e724eb15390ae8ee66fb, type: 3}
-    volume: 1
+    volume: 0.5
     isDialogue: 0
     source: {fileID: 0}
   - type: 3
     clip: {fileID: 8300000, guid: 02fd7e18ab8d5684aadf8b5c37503ba5, type: 3}
-    volume: 1
+    volume: 0.7
     isDialogue: 0
     source: {fileID: 0}
   - type: 4
     clip: {fileID: 8300000, guid: 32a0b4d7eb17f0741babad8ccae63118, type: 3}
-    volume: 1
+    volume: 4
     isDialogue: 1
     source: {fileID: 0}
   - type: 5
     clip: {fileID: 8300000, guid: 7782b461f612e3a4a9dddb2f3536632d, type: 3}
-    volume: 1
+    volume: 4
     isDialogue: 1
     source: {fileID: 0}
   - type: 6
     clip: {fileID: 8300000, guid: b538a89de09d27c41b224e6e05a68640, type: 3}
-    volume: 1
+    volume: 4
     isDialogue: 1
     source: {fileID: 0}
   - type: 7
     clip: {fileID: 8300000, guid: d2a445393da46c94aa9f1008d225c03a, type: 3}
-    volume: 1
+    volume: 4
     isDialogue: 1
     source: {fileID: 0}
   - type: 8
     clip: {fileID: 8300000, guid: f696a5945d1fae9438c85a46f4617163, type: 3}
-    volume: 1
+    volume: 4
     isDialogue: 1
     source: {fileID: 0}
   - type: 9
     clip: {fileID: 8300000, guid: 2c57e27f19de63649a2984f2202fc53f, type: 3}
-    volume: 1
+    volume: 4
     isDialogue: 1
     source: {fileID: 0}
 --- !u!1 &2107747527

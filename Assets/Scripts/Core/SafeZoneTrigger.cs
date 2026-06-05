@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -19,19 +20,7 @@ public class SafeZoneTrigger : MonoBehaviour
                 enemyAI.isPlayerInSafeZone = true;
             }
 
-            switch (enterAttempts)
-            {
-                case 0:
-                    AudioManager.GetInstance().PlaySound(AudioManager.SoundType.dialogueSafeRoom1);
-                    enterAttempts++;
-                    break;
-                case 1:
-                    AudioManager.GetInstance().PlaySound(AudioManager.SoundType.dialogueSafeRoom2);
-                    enterAttempts++;
-                    break;
-                default:
-                    break;
-            }
+            StartCoroutine(PlaySafeRoomDialogue());
         }
     }
 
@@ -44,6 +33,24 @@ public class SafeZoneTrigger : MonoBehaviour
             {
                 enemyAI.isPlayerInSafeZone = false;
             }
+
+            StopAllCoroutines();
+        }
+    }
+
+    public IEnumerator PlaySafeRoomDialogue()
+    {
+        yield return new WaitForSeconds(7f);
+
+        if (enterAttempts == 0)
+        {
+            AudioManager.GetInstance().PlaySound(AudioManager.SoundType.dialogueSafeRoom1);
+            enterAttempts++;
+        }
+        else if (enterAttempts == 1)
+        {
+            AudioManager.GetInstance().PlaySound(AudioManager.SoundType.dialogueSafeRoom2);
+            enterAttempts++;
         }
     }
 }
