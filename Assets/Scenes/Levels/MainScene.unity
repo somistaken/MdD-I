@@ -185263,7 +185263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   sfxGroup: {fileID: 8615681675024329694, guid: 9a7d91217c8d7e54b9a3bc3a97cd7836, type: 2}
-  voiceGroup: {fileID: 0}
+  voiceGroup: {fileID: 2346879751075545772, guid: 9a7d91217c8d7e54b9a3bc3a97cd7836, type: 2}
   allSounds:
   - type: 0
     clip: {fileID: 8300000, guid: cec57d09c8222044ba7959ad4d931c5f, type: 3}
