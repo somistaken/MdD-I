@@ -161641,8 +161641,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -105}
-  m_SizeDelta: {x: -1000, y: -250}
+  m_AnchoredPosition: {x: 0, y: -90}
+  m_SizeDelta: {x: -600, y: -220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813039103
 MonoBehaviour:
@@ -185314,6 +185314,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2c57e27f19de63649a2984f2202fc53f, type: 3}
     volume: 4
     isDialogue: 1
+    source: {fileID: 0}
+  - type: 10
+    clip: {fileID: 8300000, guid: 13f8c5617e8db0b4c822d948a97b0e1c, type: 3}
+    volume: 4
+    isDialogue: 0
     source: {fileID: 0}
 --- !u!1 &2107747527
 GameObject:
