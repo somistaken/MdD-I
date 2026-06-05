@@ -15,5 +15,5 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 9886732a5c691af49a24a01aeb406635, type: 3}
   id: oil
   itemName: Aceite
-  description: Puede usarse para lubricar
+  description: Puede usarse para lubricar puertas.
   isBurnable: 0

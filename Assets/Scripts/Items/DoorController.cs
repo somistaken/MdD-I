@@ -46,6 +46,8 @@ public class DoorController : MonoBehaviour, IInteractable
             return;
         }
 
+        doorSound.Play();
+
         doorIsOpen = !doorIsOpen;
 
         if (doorIsOpen)
@@ -59,13 +61,11 @@ public class DoorController : MonoBehaviour, IInteractable
             {
                 doorAnim.Play("DoorOpenInward");
                 openedInward = true;
-                doorSound.Play();
             }
             else
             {
                 doorAnim.Play("DoorOpenOutward");
                 openedInward = false;
-                doorSound.Play();
             }
         }
         else
@@ -75,12 +75,10 @@ public class DoorController : MonoBehaviour, IInteractable
             if (openedInward)
             {
                 doorAnim.Play("DoorCloseInward");
-                doorSound.Play();
             }
             else
             {
                 doorAnim.Play("DoorCloseOutward");
-                doorSound.Play();
             }
         }
 
