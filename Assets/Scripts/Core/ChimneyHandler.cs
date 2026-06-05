@@ -1,6 +1,5 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.Audio;
 
 public class ChimneyHandler : MonoBehaviour, IInteractable
 {
@@ -10,6 +9,7 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
     [Header("Final Event Setup")]
     [SerializeField] private ExitDoor mainExitDoor;
     [SerializeField] private EnemyAI pharLapAI;
+    [SerializeField] private AudioMixerSnapshot endGame;
 
     [Header("Atmosphere Setup")]
     [Tooltip("Los objetos padre que contienen las luces (ej: [Lighting] y Lights)")]
@@ -49,6 +49,9 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
                 pharLapAI.TriggerFinalChase();
             }
 
+            AudioManager.GetInstance().PlaySound(AudioManager.SoundType.notesBurned);
+            AudioManager.GetInstance().PlaySound(AudioManager.SoundType.dialogueHouseOnFire);
+
             TriggerRedAlertLights();
 
             foreach (string noteID in requiredNoteIDs)
@@ -57,6 +60,8 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
             }
 
             UIMessage = "La casa se esta incendiando! Tengo que correr...";
+
+            AudioManager.GetInstance().PlaySound(AudioManager.SoundType.dialogueHouseOnFire);
         }
         else
         {
@@ -70,6 +75,7 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
     private void TriggerRedAlertLights()
     {
         fireSoundHandler.StartFire();
+        endGame.TransitionTo(1f);
 
         if (lightContainers == null || lightContainers.Length == 0) return;
 

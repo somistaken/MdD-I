@@ -15,6 +15,7 @@ public class ExitDoor : MonoBehaviour, IInteractable
             if (FeedbackUI.GetInstance() != null)
             {
                 FeedbackUI.GetInstance().ShowMessage("No puedo abandonar la mansión sin quemar las pruebas");
+                AudioManager.GetInstance().PlaySound(AudioManager.SoundType.dialogueMainDoor);
             }
             return;
         }

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PickupItem : MonoBehaviour, IInteractable
@@ -7,6 +6,15 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if (itemData.isBurnable)
+        {
+            AudioManager.GetInstance().PlaySound(AudioManager.SoundType.notePickup);
+        }
+        else
+        {
+            AudioManager.GetInstance().PlaySound(AudioManager.SoundType.itemPickup);
+        }
+
         if (NoteReaderUI.GetInstance() != null)
         {
             NoteReaderUI.GetInstance().OpenNote(itemData);

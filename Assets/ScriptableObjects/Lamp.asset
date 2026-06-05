@@ -15,5 +15,8 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: e525025e3e017264eaca64f878723fa0, type: 3}
   id: lamp
   itemName: Lampara
-  description: Una fuente de luz
+  description: 'Una fuente de luz.
+
+
+    (Presiona "F" para encenderla y apagarla)'
   isBurnable: 0

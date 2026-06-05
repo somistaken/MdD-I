@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -9,8 +10,11 @@ public class InventoryUI : MonoBehaviour
     [Header("References")]
     [SerializeField] GameObject uiItemPrefab;
     [SerializeField] RectTransform inventoryPanel;
+    [SerializeField] TextMeshProUGUI notesText;
     [Header("Inventory UI elements")]
     SerializedDictionary<string, GameObject> inventoryUI = new();
+    private int noteAmount = 0;
+
 
     private void Awake()
     {
@@ -27,6 +31,11 @@ public class InventoryUI : MonoBehaviour
         itemUI.transform.SetParent(inventoryPanel);
         inventoryUI.Add(item.id, itemUI.gameObject);
         itemUI.Initialize(item);
+        if (item.isBurnable)
+        {
+            noteAmount++;
+            notesText.text = "Notas: \n" + noteAmount + "/10";
+        }
     }
 
     public void RemoveUIITem(string itemID)
@@ -34,10 +43,5 @@ public class InventoryUI : MonoBehaviour
         var itemUI = inventoryUI.GetValueOrDefault(itemID);
         inventoryUI.Remove(itemID);
         Destroy(itemUI);
-    }
-
-    public void SetItemOnChimney(ItemSO item)
-    {
-
     }
 }

@@ -1,12 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public enum SoundType
     {
         lampToggle,
+        itemPickup,
+        notePickup,
+        notesBurned,
+        dialogueHouseOnFire,
+        dialogueRespawn1,
+        dialogueRespawn2,
+        dialogueMainDoor,
+        dialogueSafeRoom1,
+        dialogueSafeRoom2,
+        owlAlert,
         // agregar mas sonidos que hagan falta
     }
 
@@ -17,16 +27,17 @@ public class AudioManager : MonoBehaviour
         public AudioClip clip;
         [Range(0f, 1f)]
         public float volume = 1f;
+        public bool isDialogue;
         [HideInInspector]
         public AudioSource source;
     }
 
     private static AudioManager instance;
-
+    [SerializeField] private AudioMixerGroup sfxGroup;
+    [SerializeField] private AudioMixerGroup voiceGroup;
     [SerializeField] private Sound[] allSounds;
 
     private Dictionary<SoundType, Sound> soundDict = new Dictionary<SoundType, Sound>();
-    private Dictionary<SoundType, GameObject> musicDict = new Dictionary<SoundType, GameObject>();
 
     private void Awake()
     {
@@ -61,8 +72,12 @@ public class AudioManager : MonoBehaviour
         audioSrc.clip = s.clip;
         audioSrc.volume = s.volume;
 
+        if (s.isDialogue) audioSrc.outputAudioMixerGroup = voiceGroup;
+        else audioSrc.outputAudioMixerGroup = sfxGroup;
+
         audioSrc.Play();
 
         Destroy(soundObject, s.clip.length);
     }
+
 }

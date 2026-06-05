@@ -13,6 +13,11 @@ public class OwlAlert : MonoBehaviour
     {
         if (other.CompareTag(playerTag))
         {
+            if (AudioManager.GetInstance() != null)
+            {
+                AudioManager.GetInstance().PlaySound(AudioManager.SoundType.owlAlert);
+            }
+
             enemyToAlert.ReceiveAlert(transform.position);
 
             if (destroyAfterAlert)
