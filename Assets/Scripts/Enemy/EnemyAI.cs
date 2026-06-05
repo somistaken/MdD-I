@@ -294,6 +294,9 @@ public class EnemyAI : MonoBehaviour
 
         player.position = safeZoneSpawnPoint.position;
 
+        if (currentCaptures == 1 ) AudioManager.GetInstance().PlaySound(AudioManager.SoundType.dialogueRespawn1);
+        if (currentCaptures == 2 ) AudioManager.GetInstance().PlaySound(AudioManager.SoundType.dialogueRespawn2);
+
         if (cc != null) cc.enabled = true;
 
         hasSpottedPlayer = false;

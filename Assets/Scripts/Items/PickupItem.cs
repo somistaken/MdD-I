@@ -1,19 +1,19 @@
-using System.Collections;
 using UnityEngine;
 
 public class PickupItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private ItemSO itemData;
-    private AudioSource soundEffect;
-
-    private void Awake()
-    {
-        soundEffect = GetComponent<AudioSource>();
-    }
 
     public void Interact()
     {
-        soundEffect.Play();
+        if (itemData.isBurnable)
+        {
+            AudioManager.GetInstance().PlaySound(AudioManager.SoundType.notePickup);
+        }
+        else
+        {
+            AudioManager.GetInstance().PlaySound(AudioManager.SoundType.itemPickup);
+        }
 
         if (NoteReaderUI.GetInstance() != null)
         {
