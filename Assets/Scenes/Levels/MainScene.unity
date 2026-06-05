@@ -2109,7 +2109,7 @@ Transform:
   m_GameObject: {fileID: 201110213}
   serializedVersion: 2
   m_LocalRotation: {x: 0.68301284, y: -0.1830124, z: 0.1830124, w: 0.68301284}
-  m_LocalPosition: {x: 1.1286216, y: 0.4050839, z: 6.545429}
+  m_LocalPosition: {x: 0.953, y: 0.435, z: 6.443}
   m_LocalScale: {x: 0.2, y: 0.29, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2147,8 +2147,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.3990326, y: 2.55358, z: 16.56228}
-  m_Center: {x: 0.19369125, y: -0.267102, z: -2.7884526}
+  m_Size: {x: 3.9780307, y: 2.55358, z: 26.108454}
+  m_Center: {x: -0.01680818, y: -0.26710206, z: -7.5615363}
 --- !u!23 &201110217
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -155962,7 +155962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8045047564866283964, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 62.67
+      value: 63.349
       objectReference: {fileID: 0}
     - target: {fileID: 8045047564866283964, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -155970,23 +155970,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8045047564866283964, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.944
+      value: 12.278
       objectReference: {fileID: 0}
     - target: {fileID: 8045047564866283964, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.00037004054
+      value: 0.1638634
       objectReference: {fileID: 0}
     - target: {fileID: 8045047564866283964, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00037008524
+      value: 0.16383754
       objectReference: {fileID: 0}
     - target: {fileID: 8045047564866283964, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071628
+      value: 0.68791616
       objectReference: {fileID: 0}
     - target: {fileID: 8045047564866283964, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7070507
+      value: -0.6878063
       objectReference: {fileID: 0}
     - target: {fileID: 8045047564866283964, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -155998,7 +155998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8045047564866283964, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -179.94
+      value: -153.199
       objectReference: {fileID: 0}
     - target: {fileID: 8045047564866283964, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -162074,7 +162074,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 223.89136, y: 78.878174, z: 221.66675, w: 124.02881}
+  m_margin: {x: 425.15417, y: 108.15411, z: 423.08435, w: 124.02881}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
