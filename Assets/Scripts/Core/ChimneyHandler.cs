@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ChimneyHandler : MonoBehaviour, IInteractable
 {
@@ -15,6 +17,13 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
     [SerializeField] private Color finalEventColor = Color.red;
     [SerializeField] private float finalEventIntensityMultiplier = 1.5f;
 
+    private string UIMessage = "Aún faltan notas por encontrar...";
+    private FireSoundHandler fireSoundHandler;
+
+    private void Start()
+    {
+        fireSoundHandler = GetComponent<FireSoundHandler>();
+    }
     public void Interact()
     {
         bool hasAllNotes = true;
@@ -46,18 +55,22 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
             {
                 PlayerInventory.GetInstance().RemoveItem(noteID);
             }
+
+            UIMessage = "La casa se esta incendiando! Tengo que correr...";
         }
         else
         {
             if (FeedbackUI.GetInstance() != null)
             {
-                FeedbackUI.GetInstance().ShowMessage("Aún faltan notas por encontrar...");
+                FeedbackUI.GetInstance().ShowMessage(UIMessage);
             }
         }
     }
 
     private void TriggerRedAlertLights()
     {
+        fireSoundHandler.StartFire();
+
         if (lightContainers == null || lightContainers.Length == 0) return;
 
         foreach (Transform container in lightContainers)
@@ -74,5 +87,7 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
                 light.intensity *= finalEventIntensityMultiplier;
             }
         }
+
+        
     }
 }
