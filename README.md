@@ -2,9 +2,9 @@ INFORMACION
 /*
 
 
-LINK GDD: https://docs.google.com/document/d/1dNhMJypaLRHLEiQhDwaN3UieQxyklU-VjZ7B49-zhuM/edit?tab=t.0
+LINK GDD:
 
-LINK TESTING: https://docs.google.com/document/d/1YGRaKuDoVuzzud70jLdnugrnC65HpZiYIWaMtWYNvHQ/edit?tab=t.0
+LINK TESTING:
 
 ---------------------------------------
 NOTAS PERIODISTICAS
