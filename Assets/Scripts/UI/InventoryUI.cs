@@ -27,15 +27,17 @@ public class InventoryUI : MonoBehaviour
 
     public void AddUIItem(ItemSO item)
     {
-        var itemUI = Instantiate(uiItemPrefab).GetComponent<ItemUI>();
-        itemUI.transform.SetParent(inventoryPanel);
-        inventoryUI.Add(item.id, itemUI.gameObject);
-        itemUI.Initialize(item);
         if (item.isBurnable)
         {
             noteAmount++;
             notesText.text = "Notas: \n" + noteAmount + "/10";
+            return;
         }
+        var itemUI = Instantiate(uiItemPrefab).GetComponent<ItemUI>();
+        itemUI.transform.SetParent(inventoryPanel);
+        inventoryUI.Add(item.id, itemUI.gameObject);
+        itemUI.Initialize(item);
+        
     }
 
     public void RemoveUIITem(string itemID)
