@@ -15,10 +15,10 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: da02b1b8864c7d44a82782ac4afd94fd, type: 3}
   id: nota_09
   itemName: "\"Irresponsables\u201D (Junio, 1933)"
-  description: "Fue encontrada la banda responsable del asesinato de Phar Lap. \r\nLa
+  description: "Fue encontrada la banda responsable del asesinato de Phar Lap. \n\r\nLa
     mafia llamada \u201CBlade Boys\u201D fue la causante del siniestro, ya que se
     encontraron huellas en la escena del crimen, correspondientes a miembros de esta
-    famosa pandilla. La polic\xEDa trabaja sin descanso para poder encontrarlos y
-    condenarlos. Por favor si mantiene contacto con alguno de ellos, entreguelo a
-    la justicia.\r\n"
+    famosa pandilla. \n\nLa polic\xEDa trabaja sin descanso para poder encontrarlos
+    y condenarlos. Por favor si mantiene contacto con alguno de ellos, entreguelo
+    a la justicia.\r\n"
   isBurnable: 1

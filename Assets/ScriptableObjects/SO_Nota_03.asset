@@ -17,6 +17,6 @@ MonoBehaviour:
   itemName: '"Fraude Total" (Julio, 1931)'
   description: "Mientras la Gran Depresi\xF3n asfixia a Australia, \u201CPhar Lap\u201D
     llama la atenci\xF3n de todas las c\xE1maras, ya que se consagra en el podio
-    en el 90% de sus carreras.\r\nLas autoridades del hip\xF3dromo recibieron infinidad
+    en el 90% de sus carreras.\r\n\nLas autoridades del hip\xF3dromo recibieron infinidad
     de denuncias an\xF3nimas sobre alteraciones en su comida y su extra\xF1o comportamiento."
   isBurnable: 1
