@@ -1,6 +1,5 @@
-Test
+INFORMACION
 /*
- NOTAS
 
 
 LINK GDD:
