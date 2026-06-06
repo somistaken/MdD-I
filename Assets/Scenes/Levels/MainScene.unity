@@ -155744,7 +155744,7 @@ PrefabInstance:
     - target: {fileID: 5339254178310404321, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: enemyToAlert
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1685870008}
     - target: {fileID: 7272768651836109574, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_Name
       value: Owl
@@ -161675,7 +161675,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -90}
-  m_SizeDelta: {x: -600, y: -220}
+  m_SizeDelta: {x: -200, y: -220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813039103
 MonoBehaviour:
@@ -169821,7 +169821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerTransform: {fileID: 1592925536}
-  enemyAI: {fileID: 0}
+  enemyAI: {fileID: 1685870008}
 --- !u!1 &1118923872
 GameObject:
   m_ObjectHideFlags: 0
@@ -179388,7 +179388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1399789126
 RectTransform:
   m_ObjectHideFlags: 0
@@ -181682,7 +181682,7 @@ PrefabInstance:
     - target: {fileID: 5339254178310404321, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: enemyToAlert
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1685870008}
     - target: {fileID: 7272768651836109574, guid: de36cdc58ab36f84ead49c71193ce5ee, type: 3}
       propertyPath: m_Name
       value: Owl (1)
