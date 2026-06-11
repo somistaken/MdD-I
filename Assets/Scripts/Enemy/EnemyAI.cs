@@ -56,6 +56,12 @@ public class EnemyAI : MonoBehaviour
     public bool isPlayerInSafeZone;
     private bool isFinalChase = false;
 
+    [Header("Anti-Stuck Settings")]
+    [SerializeField] private float stuckCheckInterval = 1.5f;
+    [SerializeField] private float stuckDistanceThreshold = 0.2f;
+    private Vector3 lastStuckCheckPosition;
+    private float stuckTimer;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -185,6 +191,7 @@ public class EnemyAI : MonoBehaviour
                 Patrolling();
             }
         }
+        HandleAntiStuck();
     }
 
     private bool CheckLineOfSight(float range, bool checkAngle = true)
@@ -353,5 +360,32 @@ public class EnemyAI : MonoBehaviour
         currentInvestigateTimer = 0f;
 
         currentSpotTimer = 0f;
+    }
+
+    private void HandleAntiStuck()
+    {
+        if (agent.hasPath && !agent.pathPending && agent.remainingDistance > agent.stoppingDistance)
+        {
+            stuckTimer += Time.deltaTime;
+
+            if (stuckTimer >= stuckCheckInterval)
+            {
+                float distanceMoved = Vector3.Distance(transform.position, lastStuckCheckPosition);
+
+                if (distanceMoved < stuckDistanceThreshold)
+                {
+                    walkPointSet = false;
+                    agent.ResetPath();
+                }
+
+                lastStuckCheckPosition = transform.position;
+                stuckTimer = 0f;
+            }
+        }
+        else
+        {
+            stuckTimer = 0f;
+            lastStuckCheckPosition = transform.position;
+        }
     }
 }
