@@ -3,19 +3,19 @@ using UnityEngine.AI;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
+    [Header("Lock System")]
+    [Tooltip("Si está marcado, la puerta requerirá aceite para poder abrirse por primera vez.")]
+    [SerializeField] private bool isStuck = false;
+
     private Animator doorAnim;
     private AudioSource doorSound;
     private bool doorIsOpen;
     private bool openedInward;
-    private int doorStuckThreshold;
-    private int doorAttempts;
     private NavMeshObstacle navObstacle;
 
     private void Awake()
     {
         doorIsOpen = false;
-        doorAttempts = 0;
-        doorStuckThreshold = 5;
         doorAnim = GetComponent<Animator>();
         doorSound = GetComponent<AudioSource>();
 
@@ -32,22 +32,32 @@ public class DoorController : MonoBehaviour, IInteractable
             return;
         }
 
-        if (doorAttempts > doorStuckThreshold)
+        if (isStuck)
         {
             if (PlayerInventory.GetInstance().IsItemInInventory("oil"))
             {
-                doorAttempts = 0;
+                isStuck = false;
                 PlayerInventory.GetInstance().RemoveItem("oil");
+
+                if (FeedbackUI.GetInstance() != null)
+                {
+                    FeedbackUI.GetInstance().ShowMessage("He engrasado las bisagras. Ya puedo abrirla.");
+                }
+
+                return;
             }
             else
             {
-                FeedbackUI.GetInstance().ShowMessage("La puerta está trabada. Necesito aceite...");
+                if (FeedbackUI.GetInstance() != null)
+                {
+                    FeedbackUI.GetInstance().ShowMessage("La puerta está atascada. Necesito aceite...");
+                }
+                return;
             }
-            return;
         }
+        // ------------------------------------
 
         doorSound.Play();
-
         doorIsOpen = !doorIsOpen;
 
         if (doorIsOpen)
@@ -81,7 +91,5 @@ public class DoorController : MonoBehaviour, IInteractable
                 doorAnim.Play("DoorCloseOutward");
             }
         }
-
-        doorAttempts++;
     }
 }
