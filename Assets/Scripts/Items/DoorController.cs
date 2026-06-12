@@ -3,6 +3,15 @@ using UnityEngine.AI;
 
 public class DoorController : MonoBehaviour, IInteractable
 {
+    public enum AxisDirection { X_Rojo, Y_Verde, Z_Azul }
+
+    [Header("Orientation Settings")]
+    [Tooltip("Selecciona el eje (la flecha del Gizmo) que apunta hacia la cara de esta puerta.")]
+    [SerializeField] private AxisDirection faceAxis = AxisDirection.Z_Azul;
+
+    [Tooltip("Marca esta casilla si la puerta se abre hacia tu cara en lugar de alejarse.")]
+    [SerializeField] private bool invertDirection = false;
+
     [Header("Lock System")]
     [Tooltip("Si está marcado, la puerta requerirá aceite para poder abrirse por primera vez.")]
     [SerializeField] private bool isStuck = false;
@@ -43,7 +52,6 @@ public class DoorController : MonoBehaviour, IInteractable
                 {
                     FeedbackUI.GetInstance().ShowMessage("He engrasado las bisagras. Ya puedo abrirla.");
                 }
-
                 return;
             }
             else
@@ -65,9 +73,20 @@ public class DoorController : MonoBehaviour, IInteractable
             if (navObstacle != null) navObstacle.carving = false;
 
             Vector3 directionToPlayer = (Camera.main.transform.position - transform.position).normalized;
-            float dotProduct = Vector3.Dot(transform.right, directionToPlayer);
 
-            if (dotProduct > 0)
+            Vector3 faceDirection = transform.forward;
+
+            if (faceAxis == AxisDirection.X_Rojo) faceDirection = transform.right;
+            else if (faceAxis == AxisDirection.Y_Verde) faceDirection = transform.up;
+
+            float dotProduct = Vector3.Dot(faceDirection, directionToPlayer);
+
+            if (invertDirection)
+            {
+                dotProduct *= -1;
+            }
+
+            if (dotProduct < 0)
             {
                 doorAnim.Play("DoorOpenInward");
                 openedInward = true;
