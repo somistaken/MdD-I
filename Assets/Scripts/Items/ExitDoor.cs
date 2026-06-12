@@ -4,6 +4,7 @@ public class ExitDoor : MonoBehaviour, IInteractable
 {
     [Header("References")]
     [SerializeField] private Animator doorAnim;
+    [SerializeField] private AudioSource doorSound;
 
     private bool isLocked = true;
     private bool isOpen = false;
@@ -23,18 +24,23 @@ public class ExitDoor : MonoBehaviour, IInteractable
         if (!isOpen)
         {
             isOpen = true;
+
+            if (doorSound != null)
+            {
+                doorSound.Play();
+            }
+
             if (doorAnim != null)
             {
                 doorAnim.Play("DoorOpenOutward");
             }
+
             if (FeedbackUI.GetInstance() != null)
             {
                 FeedbackUI.GetInstance().ShowMessage("¡La puerta está abierta! ¡Sálvate!");
             }
-
         }
     }
-
 
     public void Unlock()
     {

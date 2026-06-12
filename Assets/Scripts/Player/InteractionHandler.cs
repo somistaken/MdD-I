@@ -21,7 +21,7 @@ public class InteractionHandler : MonoBehaviour
         {
             Ray r = new Ray(interactionSource.position, interactionSource.forward);
             Debug.DrawRay(interactionSource.position, interactionSource.forward * interactRange, Color.green, 2f);
-            
+
             if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
             {
                 if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))

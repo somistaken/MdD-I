@@ -11,13 +11,6 @@ public class DoorController : MonoBehaviour, IInteractable
     private int doorAttempts;
     private NavMeshObstacle navObstacle;
 
-    [Header("Animation State Names")]
-    [SerializeField] private string animIdle = "Idle";
-    [SerializeField] private string animOpenInward = "DoorOpenInward";
-    [SerializeField] private string animOpenOutward = "DoorOpenOutward";
-    [SerializeField] private string animCloseInward = "DoorCloseInward";
-    [SerializeField] private string animCloseOutward = "DoorCloseOutward";
-
     private void Awake()
     {
         doorIsOpen = false;
@@ -66,12 +59,12 @@ public class DoorController : MonoBehaviour, IInteractable
 
             if (dotProduct > 0)
             {
-                doorAnim.Play("OpenInward");
+                doorAnim.Play("DoorOpenInward");
                 openedInward = true;
             }
             else
             {
-                doorAnim.Play("OpenOutward");
+                doorAnim.Play("DoorOpenOutward");
                 openedInward = false;
             }
         }
@@ -81,11 +74,11 @@ public class DoorController : MonoBehaviour, IInteractable
 
             if (openedInward)
             {
-                doorAnim.Play("CloseInward");
+                doorAnim.Play("DoorCloseInward");
             }
             else
             {
-                doorAnim.Play("CloseOutward");
+                doorAnim.Play("DoorCloseOutward");
             }
         }
 
