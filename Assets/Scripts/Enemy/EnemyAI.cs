@@ -62,6 +62,10 @@ public class EnemyAI : MonoBehaviour
     private Vector3 lastStuckCheckPosition;
     private float stuckTimer;
 
+    [Header("Final Chase Setup")]
+    [Tooltip("Un transform vacío en el fondo de la casa donde el búho aparecerá al iniciar el escape")]
+    public Transform finalSpawnPoint;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -74,6 +78,10 @@ public class EnemyAI : MonoBehaviour
 
     public void TriggerFinalChase()
     {
+        if (finalSpawnPoint != null)
+        {
+            GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(finalSpawnPoint.position);
+        }
         isFinalChase = true;
     }
 
@@ -373,7 +381,15 @@ public class EnemyAI : MonoBehaviour
                 float distanceMoved = Vector3.Distance(transform.position, lastStuckCheckPosition);
 
                 if (distanceMoved < stuckDistanceThreshold)
-                {
+                {.
+                    if (agent.path.corners.Length > 1)
+                    {
+                        Vector3 nextCorner = agent.path.corners[1];
+                        Vector3 pushDirection = (nextCorner - transform.position).normalized;
+
+                        agent.Warp(transform.position + (pushDirection * 1.2f));
+                    }
+
                     walkPointSet = false;
                     agent.ResetPath();
                 }

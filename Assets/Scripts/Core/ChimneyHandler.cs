@@ -53,7 +53,7 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
                 PlayerInventory.GetInstance().RemoveItem(noteID);
             }
 
-            UIMessage = "¡La casa se está incendiando! Tengo que correr...";
+            UIMessage = "¡El caballo se enojo! Tengo que correr...";
         }
         else
         {
