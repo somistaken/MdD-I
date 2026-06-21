@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using System;
 
 public class ChimneyHandler : MonoBehaviour, IInteractable
 {
+    public static event Action OnFinalSequenceTriggered;
+
     [Header("Notes for Wincon")]
     [SerializeField] private string[] requiredNoteIDs;
 
@@ -11,12 +14,6 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
     [SerializeField] private EnemyAI pharLapAI;
     [SerializeField] private AudioMixerSnapshot endGame;
 
-    [Header("Atmosphere Setup")]
-    [Tooltip("Los objetos padre que contienen las luces (ej: [Lighting] y Lights)")]
-    [SerializeField] private Transform[] lightContainers;
-    [SerializeField] private Color finalEventColor = Color.red;
-    [SerializeField] private float finalEventIntensityMultiplier = 1.5f;
-
     private string UIMessage = "Aún faltan notas por encontrar...";
     private FireSoundHandler fireSoundHandler;
 
@@ -24,6 +21,7 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
     {
         fireSoundHandler = GetComponent<FireSoundHandler>();
     }
+
     public void Interact()
     {
         bool hasAllNotes = true;
@@ -39,29 +37,23 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
 
         if (hasAllNotes)
         {
-            if (mainExitDoor != null)
-            {
-                mainExitDoor.Unlock();
-            }
+            if (mainExitDoor != null) mainExitDoor.Unlock();
+            if (pharLapAI != null) pharLapAI.TriggerFinalChase();
 
-            if (pharLapAI != null)
-            {
-                pharLapAI.TriggerFinalChase();
-            }
+            if (fireSoundHandler != null) fireSoundHandler.StartFire();
+            if (endGame != null) endGame.TransitionTo(2f);
 
             AudioManager.GetInstance().PlaySound(AudioManager.SoundType.notesBurned);
             AudioManager.GetInstance().PlaySound(AudioManager.SoundType.dialogueHouseOnFire);
 
-            TriggerRedAlertLights();
+            OnFinalSequenceTriggered?.Invoke();
 
             foreach (string noteID in requiredNoteIDs)
             {
                 PlayerInventory.GetInstance().RemoveItem(noteID);
             }
 
-            UIMessage = "La casa se esta incendiando! Tengo que correr...";
-
-            AudioManager.GetInstance().PlaySound(AudioManager.SoundType.dialogueHouseOnFire);
+            UIMessage = "¡La casa se está incendiando! Tengo que correr...";
         }
         else
         {
@@ -70,30 +62,5 @@ public class ChimneyHandler : MonoBehaviour, IInteractable
                 FeedbackUI.GetInstance().ShowMessage(UIMessage);
             }
         }
-    }
-
-    private void TriggerRedAlertLights()
-    {
-        fireSoundHandler.StartFire();
-        endGame.TransitionTo(1f);
-
-        if (lightContainers == null || lightContainers.Length == 0) return;
-
-        foreach (Transform container in lightContainers)
-        {
-            if (container == null) continue;
-
-            Light[] lightsInContainer = container.GetComponentsInChildren<Light>();
-
-            foreach (Light light in lightsInContainer)
-            {
-                if (light.gameObject.CompareTag("Player")) continue;
-
-                light.color = finalEventColor;
-                light.intensity *= finalEventIntensityMultiplier;
-            }
-        }
-
-        
     }
 }
