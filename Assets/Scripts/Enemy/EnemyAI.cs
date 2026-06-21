@@ -381,7 +381,7 @@ public class EnemyAI : MonoBehaviour
                 float distanceMoved = Vector3.Distance(transform.position, lastStuckCheckPosition);
 
                 if (distanceMoved < stuckDistanceThreshold)
-                {.
+                {
                     if (agent.path.corners.Length > 1)
                     {
                         Vector3 nextCorner = agent.path.corners[1];
